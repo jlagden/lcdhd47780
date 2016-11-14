@@ -1,0 +1,30 @@
+{
+  "enabled": {
+    "type": "boolean",
+    "value": false
+  },
+  "D4": {
+      "type": "number",
+      "value": 0
+  },
+  "D5": {
+    "type": "number",
+    "value": 0
+  },
+  "D6": {
+    "type": "number",
+    "value": 0
+  },
+  "D7": {
+    "type": "number",
+    "value": 0
+  },
+  "RS": {
+    "type": "number",
+    "value": 0
+  },
+  "RW": {
+    "type": "number",
+    "value": 0
+  }
+}
