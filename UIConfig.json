@@ -1,0 +1,60 @@
+{
+  "page": {
+    "label": "LCD HD47780 Configuration"
+  },
+  "sections": [
+    {
+      "id": "section_gpio",
+      "element": "section",
+      "label": "GPIO Configuration",
+      "icon": "fa-microchip",
+      "onSave": {"type":"controller", "endpoint":"","method":"saveGPIOConfig"},
+      "saveButton": {
+        "label": "Save",
+        "data": [
+          "D4",
+          "D5",
+          "D6",
+          "D7",
+          "RS",
+          "RW"
+        ]
+      },
+      "content": [
+        {
+          "id": "D4",
+          "type":"number",
+          "element": "input",
+          "doc": "GPIO number connected to D4 Line on LCD",
+          "label": "GPIO D4",
+          "value": ""
+        },
+        {
+          "id": "D5",
+          "type":"number",
+          "element": "input",
+          "doc": "GPIO number connected to D5 Line on LCD",
+          "label": "GPIO D5",
+          "value": ""
+        },
+        {
+          "id":"D6",
+          "type":"number",
+          "element": "input",
+          "doc": "GPIO number connected to D6 Line on LCD",
+          "label": "GPIO D6",
+          "value": ""
+        },
+        {
+          "id":"D7",
+          "type":"number",
+          "element": "input",
+          "doc": "GPIO number connected to D7 Line on LCD",
+          "label": "GPIO D7",
+          "value": ""
+        }
+      ]
+    }
+  ]
+}
+
