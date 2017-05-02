@@ -1,7 +1,7 @@
 {
   "name": "lcdHD47780",
   "version": "1.0.0",
-  "description": "LCD Display plugin for Volumio2",
+  "description": "LCD Display plugin for Volumio 2",
   "main": "index.js",
   "author": "",
   "license":"GPL",
