@@ -3,6 +3,14 @@
     "type": "boolean",
     "value": false
   },
+  "RS": {
+    "type": "number",
+    "value": 0
+  },
+  "E": {
+    "type": "number",
+    "value": 0
+  },
   "D4": {
     "type": "number",
     "value": 0
@@ -16,14 +24,6 @@
     "value": 0
   },
   "D7": {
-    "type": "number",
-    "value": 0
-  },
-  "RS": {
-    "type": "number",
-    "value": 0
-  },
-  "RW": {
     "type": "number",
     "value": 0
   }
