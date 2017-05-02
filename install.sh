@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Installing hd47780lcd dependencies"
+echo "Installing lcdHD47780 dependencies"
 
 #required to end the plugin install
 echo "plugininstallend"
