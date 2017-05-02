@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "LCD Display plugin for Volumio 2",
   "main": "index.js",
-  "author": "",
+  "author": "jlagden",
   "license":"GPL",
   "volumio_info": {
     "prettyName": "LCD HD47780",
-    "plugin_type": "miscellanea",
+    "plugin_type": "user_interface",
     "boot_priority":10
   }
 }
