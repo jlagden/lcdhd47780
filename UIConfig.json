@@ -12,15 +12,31 @@
       "saveButton": {
         "label": "Save",
         "data": [
+          "RS",
+          "E",
           "D4",
           "D5",
           "D6",
-          "D7",
-          "RS",
-          "RW"
+          "D7"
         ]
       },
       "content": [
+        {
+          "id": "RS",
+          "type":"number",
+          "element":"input",
+          "doc": "GPIO number connected to RS Line on LCD",
+          "label": "GPIO RS",
+          "value":""
+        },
+        {
+          "id": "E",
+          "type":"number",
+          "element":"input",
+          "doc": "GPIO number connected to E Line on LCD",
+          "label2:" "GPIO E",
+          "value":""
+        },
         {
           "id": "D4",
           "type":"number",
