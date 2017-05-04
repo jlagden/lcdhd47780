@@ -29,3 +29,22 @@ ControllerlcdHD47780.prototype.onStop = function() {
 	
 	return defer.promise;
 };
+
+ControllerlcdHD47780.prototype.onStop = function() {
+	var self = this;
+	
+	return libQ.resolve();
+	
+}
+
+ControllerlcdHD47780.prototype.getConfigurationFiles = function() {
+	return ['config.json'];
+}
+
+ControllerlcdHD47780.prototype.getUIConfig = function() {
+	var defer = libQ.defer();
+	var self = this;
+	
+	return defer.promise;
+
+}
