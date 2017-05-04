@@ -34,7 +34,7 @@
           "type":"number",
           "element":"input",
           "doc": "GPIO number connected to E Line on LCD",
-          "label:" "GPIO E",
+          "label": "GPIO E",
           "value":""
         },
         {
