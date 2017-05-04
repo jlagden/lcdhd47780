@@ -48,3 +48,12 @@ ControllerlcdHD47780.prototype.getUIConfig = function() {
 	return defer.promise;
 
 }
+
+ControllerlcdHD47780.prototype.pushState = function(state) {
+	var self = this;
+	//
+	return libQ.resolve();
+
+}
+
+// Public Methods
