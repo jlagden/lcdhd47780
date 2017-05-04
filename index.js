@@ -22,7 +22,7 @@ ControllerlcdHD47780.prototype.onVolumioStart = function() {
 
 }
 
-ControllerlcdHD47780.prototype.onStop = function() {
+ControllerlcdHD47780.prototype.onStart = function() {
 	var self = this;
 	
 	var defer=libQ.defer();
