@@ -1,9 +1,11 @@
 'use strict'
 
+var libQ = require('kew');
+
 module.exports = ControllerlcdHD47780;
 
 function ControllerlcdHD47780(context) {
-  // This fixed variable will let us refer to 'this' object at deeper scopes
+	// This fixed variable will let us refer to 'this' object at deeper scopes
 	var self = this;
 
 	this.context = context;
@@ -14,12 +16,16 @@ function ControllerlcdHD47780(context) {
 }
 
 ControllerlcdHD47780.prototype.onVolumioStart = function() {
-  var configFile=this.commandRouter.pluginManager.getConfigurationFile(this.context,'config.json');
+  	var configFile=this.commandRouter.pluginManager.getConfigurationFile(this.context,'config.json');
 	this.config = new (require('v-conf'))();
 	this.config.loadFile(configFile);
 
 }
 
 ControllerlcdHD47780.prototype.onStop = function() {
-
+	var self = this;
+	
+	var defer=libQ.defer();
+	
+	return defer.promise;
 };
