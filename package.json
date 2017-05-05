@@ -4,7 +4,7 @@
   "description": "LCD Display plugin for Volumio 2",
   "main": "index.js",
   "author": "jlagden",
-  "license":"GPL",
+  "license":"GPL-3.0",
   "volumio_info": {
     "prettyName": "LCD HD47780",
     "icon": "fa-desktop",
