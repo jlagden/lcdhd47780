@@ -6,6 +6,7 @@ module.exports = lcdDisplay;
 
 function lcdDisplay(context) {
 
+	// Test GPIO pins, eventually get this from configuration
 	self.lcd = new Lcd({rs: 7, e: 8, data: [25, 24, 23, 18], cols: 16, rows: 2});
 
 }
