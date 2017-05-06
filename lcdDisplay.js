@@ -11,8 +11,23 @@ function lcdDisplay(context) {
 
 }
 
-lcdDisplay.prototype.displayTrackInfo = function(data,index) {
+lcdDisplay.prototype.displayTrackInfo = function(data,pos) {
 
+	pos = pos || 0;
+	
+	if(pos === str.length){
+		pos = 0;
+	}
+	
+	lcd.print(data[pos],function (err) {
+		if (err) {
+			throw err;
+		}
+		
+		setTimeout(function () {
+			print(str, pos + 1);
+		},300);
+	};
 
 }
 
