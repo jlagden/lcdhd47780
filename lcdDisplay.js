@@ -1,5 +1,8 @@
 'use strict'
 
+var COLS = 16;
+var ROWS = 2;
+
 var lcd = require('lcd');
 
 module.exports = lcdDisplay;
@@ -25,7 +28,7 @@ lcdDisplay.prototype.displayTrackInfo = function(data,pos) {
 		}
 		
 		setTimeout(function () {
-			print(str, pos + 1);
+			this.displayTrackInfo(str, pos + 1);
 		},300);
 	};
 
