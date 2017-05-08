@@ -27,7 +27,7 @@ lcdDisplay.prototype.close = function() {
 	if (self.displayTimer !== undefined) {
 		clearTimeout(self.displayTimer);
 	}
-	this.lcd.close();
+	self.lcd.close();
 };
 
 lcdDisplay.prototype.endOfSong = function() {
@@ -66,13 +66,13 @@ lcdDisplay.prototype.pushState = function(state)  {
 lcdDisplay.prototype.displayTrackInfo = function(data,pos) {
 	var self = this;
 
-	var trackInfo = data.artist + '-' + data.title;
 	var duration = data.duration;
 	
 	if (self.elapsed >= duration * 1000) {
 		self.endOfSong();
 	} else {
 	
+		var trackInfo = data.artist + '-' + data.title;
 		if (trackInfo.length > COLS) {
 			// Piece the string together in such a way so it constantly scrolling
 			trackInfo = trackInfo + '          ' + trackInfo.substr(0, COLS);
