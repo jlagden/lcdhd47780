@@ -2,7 +2,7 @@
 
 var COLS = 16;
 var ROWS = 2;
-var SCROLL_SPEED = 300;
+var SCROLL_SPEED = 500;
 
 var lcd = require('lcd');
 
@@ -22,23 +22,33 @@ lcdDisplay.prototype.displayTrackInfo = function(data,pos) {
 	var duration = data.duration;
 	
 	if (trackInfo.length > COLS) {
+		// Piece the string together in such a way so it constantly scrolling
+		trackInfo = trackInfo + '          ' + trackInfo.substr(0, COLS);
 	} else { // If the length is les then the display width, we just need to display it and forget about scrolling
 		// Add spaces to fill up the rest of the display
 		trackInfo = trackInfo + (' ').repeat(COLS-trackInfo.length);
 	}
 	
+	// Reset position
+	if (pos >= trackInfo.length - COLS) {
+	    	pos = 0;
+	}
+	
 	this.lcd.setCursor(0,0);
+	// Print track info
 	this.lcd.print(trackInfo.substr(pos,COLS),function (err) {
 		if (err) {
 			throw err;
 		}
 		// Track info printed ok, set lets print elapsed / duration
 		this.lcd.setCursor(0,1);
-		this.lcd.print(this._formatSeekDuration(,duration),function (err) {
+		this.lcd.print(this._formatSeekDuration(this.elapsed,duration),function (err) {
 			if (err) {
 				throw err;
 			}
 			setTimeout(function () {
+				if (this.currentState.status != 'pause')
+	  	    			this.elapsed += SCROLL_SPEED;
 				this.displayTrackInfo(str, pos + 1);
 			},SCROLL_SPEED);
 		}
@@ -57,4 +67,9 @@ lcdDisplay.prototype._msToMinSec = function(msec) {
 	
 	return((min < 10 ? '0' : '') + min + ':' + (sec < 10 ? '0' : '') + sec);
 
+}
+
+lcdDisplay.prototype_sToMinSec = function(sec) {
+	var min;
+	var sec;
 }
