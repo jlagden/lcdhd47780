@@ -56,6 +56,8 @@ lcdDisplay.prototype.displayTrackInfo = function(data,pos) {
 }
 
 lcdDisplay.prototype._formatSeekDuration = function(seek, duration) {
+		
+	// Seek is in millisec, duration in sec
 	return _msToMinSec(seek) + ' / ' + _msToMinSec(duration);
 
 }
