@@ -12,7 +12,6 @@ function lcdDisplay(context) {
 
 	// Test GPIO pins, eventually get this from configuration
 	this.lcd = new Lcd({rs: 7, e: 8, data: [25, 24, 23, 18], cols: 16, rows: 2});
-
 }
 
 lcdDisplay.prototype.displayTrackInfo = function(data,pos) {
@@ -70,6 +69,8 @@ lcdDisplay.prototype._msToMinSec = function(msec) {
 }
 
 lcdDisplay.prototype_sToMinSec = function(sec) {
-	var min;
-	var sec;
+	var min = (sec /60) << 0;
+	var sec = (sec % 60);
+
+	return((min < 10 ? '0' : '') + min + ':' + (sec < 10 ? '0' : '') + sec);
 }
