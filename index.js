@@ -1,6 +1,8 @@
+
 'use strict'
 
 var libQ = require('kew');
+var fs=require('fs-extra');
 
 module.exports = ControllerlcdHD47780;
 
@@ -25,13 +27,15 @@ ControllerlcdHD47780.prototype.onVolumioStart = function() {
 ControllerlcdHD47780.prototype.onStart = function() {
 	var self = this;
 	
-	var defer=libQ.defer();
+	self.lcdDisplay = new lcdDisplay(self.context);
 	
-	return defer.promise;
+	return libQ.resolve();
 };
 
 ControllerlcdHD47780.prototype.onStop = function() {
 	var self = this;
+	
+	self.lcdDisplay.close();
 	
 	return libQ.resolve();
 	
@@ -51,7 +55,7 @@ ControllerlcdHD47780.prototype.getUIConfig = function() {
 
 ControllerlcdHD47780.prototype.pushState = function(state) {
 	var self = this;
-	//
+	self.raspdacDisplay.pushState(state);
 	return libQ.resolve();
 
 }
