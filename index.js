@@ -1,5 +1,4 @@
-
-'use strict'
+'use strict';
 
 var libQ = require('kew');
 var fs=require('fs-extra');
