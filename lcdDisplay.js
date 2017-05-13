@@ -103,7 +103,7 @@ lcdDisplay.prototype.displayTrackInfo = function(data,pos) {
 	  	    				self.elapsed += SCROLL_SPEED;
 					self.displayTrackInfo(str, pos + 1);
 				},SCROLL_SPEED);
-			}
+			});
 		});
 	}
 
