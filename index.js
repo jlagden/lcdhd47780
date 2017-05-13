@@ -1,10 +1,10 @@
-
+'
 
 'use strict';
 
 var libQ = require('kew');
 var fs=require('fs-extra');
-var lcdDisplay = require(./lcdDisplay');
+var lcdDisplay = require('./lcdDisplay');
 
 module.exports = ControllerlcdHD47780;
 
