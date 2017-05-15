@@ -35,10 +35,8 @@ ControllerlcdHD47780.prototype.onStart = function() {
 	self.configFile=self.commandRouter.pluginManager.getConfigurationFile(self.context,'config.json');
 
         self.logger.info("lcdHD47780 started");
-
-
 	
-		return libQ.resolve();
+	return libQ.resolve();
 };
 
 ControllerlcdHD47780.prototype.onStop = function() {
@@ -57,6 +55,7 @@ ControllerlcdHD47780.prototype.getConf = function(varName) {
 
       this.config = new (require('v-conf'))()
 
+	
       this.config.loadFile(configFile)
 
 
@@ -64,6 +63,7 @@ ControllerlcdHD47780.prototype.getConf = function(varName) {
       return libQ.resolve();
 
 };
+
 
 ControllerlcdHD47780.prototype.getConfigurationFiles = function() {
 	return ['config.json'];
@@ -98,6 +98,13 @@ ControllerlcdHD47780.prototype.getUIConfig = function() {
 	
 	return defer.promise;
 
+}
+
+ControllerlcdHD47780.prototype.saveGPIOConfig = function(data) {
+	
+	var self = this;
+	var sucessful = true;
+	
 }
 
 ControllerlcdHD47780.prototype.setUIConfig = function(data) {
