@@ -7,3 +7,4 @@ Possible future improvements:
 
 * Add support for other language translations
 * Add support for backlight switching on/off
+* Add public methods to allow other plugins to interact with the display
