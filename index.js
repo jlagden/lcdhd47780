@@ -38,7 +38,7 @@ ControllerlcdHD47780.prototype.onStart = function() {
 
 
 	
-	return libQ.resolve();
+		return libQ.resolve();
 };
 
 ControllerlcdHD47780.prototype.onStop = function() {
@@ -76,17 +76,20 @@ ControllerlcdHD47780.prototype.getUIConfig = function() {
 	var lang_code = self.commandRouter.sharedVars.get('language_code');
 
         self.commandRouter.i18nJson(__dirname+'/i18n/strings_'+lang_code+'.json',
-
-            __dirname+'/i18n/strings_en.json',
-
-            __dirname + '/UIConfig.json')
+            			    __dirname+'/i18n/strings_en.json',
+				    __dirname + '/UIConfig.json')
 
         .then(function(uiconf) {
-
+		
+		uiconf.sections[0].content[0].value = self.config.get('RS');
+		uiconf.sections[0].content[1].value = self.config.get('E');
+		uiconf.sections[0].content[2].value = self.config.get('D4');
+                uiconf.sections[0].content[3].value = self.config.get('D5');
+		uiconf.sections[0].content[4].value = self.config.get('D6');
+                uiconf.sections[0].content[5].value = self.config.get('D7');
             defer.resolve(uiconf);
 
         })
-
         .fail(function(){
 
             defer.reject(new Error());
