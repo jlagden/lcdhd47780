@@ -4,7 +4,7 @@ var COLS = 16;
 var ROWS = 2;
 var SCROLL_SPEED = 500;
 
-var lcd = require('lcd');
+var Lcd = require('lcd');
 
 module.exports = lcdDisplay;
 
@@ -19,7 +19,7 @@ function lcdDisplay(context) {
 	self.logger = self.context.logger;
 
 	// Test GPIO pins, eventually get this from configuration
-	self.lcd = new Lcd({rs: 7, e: 8, data: [25, 24, 23, 18], cols: 16, rows: 2});
+	self.lcd = new Lcd({rs: 8, e: 7, data: [25, 24, 23, 18], cols: 16, rows: 2});
 };
 
 lcdDisplay.prototype.close = function() {
@@ -49,7 +49,7 @@ lcdDisplay.prototype.pushState = function(state)  {
 		if (self._needStartDisplayInfo(state)) { // Clear the timeout and start displayInfo again
 			clearTimeout(self.displayTimer);
 			self.lcd.clear();
-			self.displayInfo(state, 0);
+			self.displayTrackInfo(state, 0);
 		}
 	}
 	else if (state.status === 'stop') { // Now stopped, clear the timeout and display
@@ -101,7 +101,7 @@ lcdDisplay.prototype.displayTrackInfo = function(data,pos) {
 				self.displayTimer = setTimeout(function () {
 					if (self.currentState.status != 'pause')
 	  	    				self.elapsed += SCROLL_SPEED;
-					self.displayTrackInfo(str, pos + 1);
+					self.displayTrackInfo(data, pos + 1);
 				},SCROLL_SPEED);
 			});
 		});

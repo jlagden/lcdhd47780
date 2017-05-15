@@ -123,7 +123,7 @@ ControllerlcdHD47780.prototype.setUIConfig = function(data) {
 
 ControllerlcdHD47780.prototype.pushState = function(state) {
 	var self = this;
-	self.raspdacDisplay.pushState(state);
+	self.lcdDisplay.pushState(state);
 	return libQ.resolve();
 
 }
