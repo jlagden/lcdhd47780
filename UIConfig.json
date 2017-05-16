@@ -27,7 +27,7 @@
           "element":"input",
           "doc": "GPIO number connected to RS Line on LCD",
           "label": "GPIO RS",
-          "value":""
+          "value":0
         },
         {
           "id": "E",
@@ -35,7 +35,7 @@
           "element":"input",
           "doc": "GPIO number connected to E Line on LCD",
           "label": "GPIO E",
-          "value":""
+          "value":0
         },
         {
           "id": "D4",
@@ -43,7 +43,7 @@
           "element": "input",
           "doc": "GPIO number connected to D4 Line on LCD",
           "label": "GPIO D4",
-          "value": ""
+          "value": 0
         },
         {
           "id": "D5",
@@ -51,7 +51,7 @@
           "element": "input",
           "doc": "GPIO number connected to D5 Line on LCD",
           "label": "GPIO D5",
-          "value": ""
+          "value": 0
         },
         {
           "id":"D6",
@@ -59,7 +59,7 @@
           "element": "input",
           "doc": "GPIO number connected to D6 Line on LCD",
           "label": "GPIO D6",
-          "value": ""
+          "value": 0
         },
         {
           "id":"D7",
@@ -67,7 +67,7 @@
           "element": "input",
           "doc": "GPIO number connected to D7 Line on LCD",
           "label": "GPIO D7",
-          "value": ""
+          "value": 0
         }
       ]
     }
