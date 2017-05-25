@@ -135,7 +135,7 @@ lcdDisplay.prototype._msToMinSec = function(msec) {
 
 }
 
-lcdDisplay.prototype_sToMinSec = function(sec) {
+lcdDisplay.prototype._sToMinSec = function(sec) {
 	var min = (sec /60) << 0;
 	var sec = (sec % 60);
 
