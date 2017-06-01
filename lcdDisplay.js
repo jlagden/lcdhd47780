@@ -89,15 +89,9 @@ lcdDisplay.prototype.displayTrackInfo = function(data,pos) {
 		self.lcd.setCursor(0,0);
 		// Print track info
 		self.lcd.print(trackInfo.substr(pos,COLS),function (err) {
-			if (err) {
-				throw err;
-			}
 			// Track info printed ok, set lets print elapsed / duration
 			self.lcd.setCursor(0,1);
 			self.lcd.print(self._formatSeekDuration(self.elapsed,duration),function (err) {
-				if (err) {
-					throw err;
-				}
 				self.displayTimer = setTimeout(function () {
 					if (self.currentState.status != 'pause')
 	  	    				self.elapsed += SCROLL_SPEED;
