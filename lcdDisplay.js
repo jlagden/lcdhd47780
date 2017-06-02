@@ -117,7 +117,7 @@ lcdDisplay.prototype._needStartDisplayInfo = function(state) {
 lcdDisplay.prototype._formatSeekDuration = function(seek, duration) {
 		
 	// Seek is in millisec, duration in sec
-	return _msToMinSec(seek) + ' / ' + _sToMinSec(duration);
+	return _msToMinSec(seek) + ' / ' + _msToMinSec(duration * 1000);
 
 }
 
@@ -129,13 +129,4 @@ lcdDisplay.prototype._msToMinSec = function(ms) {
 	
 	return((min < 10 ? '0' : '') + min + ':' + (sec < 10 ? '0' : '') + sec);
 
-}
-
-lcdDisplay.prototype._sToMinSec = function(s) {
-	
-	var date = new Date(s * 1000);
-	var min = date.getUTCMinutes();
-	var sec = date.getUTCSeconds();
-
-	return((min < 10 ? '0' : '') + min + ':' + (sec < 10 ? '0' : '') + sec);
 }
