@@ -114,19 +114,26 @@ lcdDisplay.prototype._needStartDisplayInfo = function(state) {
   	  	  	self.currentState.title !== state.title);
 }
 		       
-lcdDisplay.prototype._formatSeekDuration = function(seek, duration) {
-		
-	// Seek is in millisec, duration in sec
-	return _msToMinSec(seek) + ' / ' + _msToMinSec(duration * 1000);
+lcdDisplay.prototype._formatSeekDuration = function(seek, duration) { 
 
-}
+	var self = this; 
+	var seekSec = Math.ceil(seek / 1000).toFixed(0); 
+	var seekMin = Math.floor(seekSec / 60); 
+	seekSec = seekSec - seekMin * 60; 
+   
+	var durMin = Math.floor(duration / 60); 
+	var durSec = duration - durMin * 60; 
 
-lcdDisplay.prototype._msToMinSec = function(ms) {
-
-	var date = new Date(ms);
-	var min = date.getUTCMinutes();
-	var sec = date.getUTCSeconds();
+	seekMin = seekMin % 99;
+	durMin = durMin % 99;
 	
-	return((min < 10 ? '0' : '') + min + ':' + (sec < 10 ? '0' : '') + sec);
+	(seekMin < 10) && ("0" += seekMin);
+	(seekSec < 10) && ("0" += seekSec);
+	(durMin < 10) && ("0" += durMin);
+    	(durSec < 10) && ("0" += durSec);  
+	
+	var txt = seekMin + ':' + seekSec + '/' + durMin + ':' durSec;
+ 
+	return txt.substr(0,COLS); 
 
-}
+} 
