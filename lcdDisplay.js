@@ -73,7 +73,8 @@ lcdDisplay.prototype.displayTrackInfo = function(data,pos) {
 	} else {
 	
 		var trackInfo = data.artist + '-' + data.title;
-		if (trackInfo.length > COLS) {
+
+if (trackInfo.length > COLS) {
 			// Piece the string together in such a way so it constantly scrolling
 			trackInfo = trackInfo + '          ' + trackInfo.substr(0, COLS);
 		} else { // If the length is les then the display width, we just need to display it and forget about scrolling
@@ -121,17 +122,21 @@ lcdDisplay.prototype._formatSeekDuration = function(seek, duration) {
 
 }
 
-lcdDisplay.prototype._msToMinSec = function(msec) {
-	var min = (msec / (1000 * 60)) << 0;
-	var sec = (msec / 1000) % 60;
+lcdDisplay.prototype._msToMinSec = function(ms) {
+
+	var date = new Date(ms);
+	var min = date.getUTCMinutes();
+	var sec = date.getUTCSeconds();
 	
 	return((min < 10 ? '0' : '') + min + ':' + (sec < 10 ? '0' : '') + sec);
 
 }
 
-lcdDisplay.prototype._sToMinSec = function(sec) {
-	var min = (sec /60) << 0;
-	var sec = (sec % 60);
+lcdDisplay.prototype._sToMinSec = function(s) {
+	
+	var date = new Date(s/1000);
+	var min = date.getUTCMinutes();
+	var sec = date.getUTCSeconds();
 
 	return((min < 10 ? '0' : '') + min + ':' + (sec < 10 ? '0' : '') + sec);
 }
