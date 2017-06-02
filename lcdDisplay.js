@@ -64,8 +64,7 @@ lcdDisplay.prototype.pushState = function(state)  {
 }
 
 lcdDisplay.prototype.displayTrackInfo = function(data,pos) {
-	var self = this;
-
+	var self = this; 
 	var duration = data.duration;
 	
 	if (self.elapsed >= duration * 1000) {
@@ -134,7 +133,7 @@ lcdDisplay.prototype._msToMinSec = function(ms) {
 
 lcdDisplay.prototype._sToMinSec = function(s) {
 	
-	var date = new Date(s/1000);
+	var date = new Date(s * 1000);
 	var min = date.getUTCMinutes();
 	var sec = date.getUTCSeconds();
 
