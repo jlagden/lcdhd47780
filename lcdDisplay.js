@@ -127,10 +127,10 @@ lcdDisplay.prototype._formatSeekDuration = function(seek, duration) {
 	seekMin = seekMin % 99;
 	durMin = durMin % 99;
 	
-	(seekMin < 10) && ("0" += seekMin);
-	(seekSec < 10) && ("0" += seekSec);
-	(durMin < 10) && ("0" += durMin);
-    	(durSec < 10) && ("0" += durSec);  
+	if (seekMin < 10) (seekMin = "0" + seekMin);
+	if (seekSec < 10) (seekSec = "0" + seekSec);
+	if (durMin < 10)  (durMin = "0" + durMin);
+    	if (durSec < 10)  (durSec = "0" + durSec);  
 	
 	var txt = seekMin + ':' + seekSec + '/' + durMin + ':' durSec;
  
