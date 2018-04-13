@@ -122,26 +122,32 @@ lcdDisplay.prototype._needStartDisplayInfo = function(state) {
   	  	  self.currentState.title !== state.title);
   
 };
-		       
+
+// Formats the seek and duration into a text format suitable for display
+// seek (seek time in milliseconds)
+// duration (duration time in seconds)
+
 lcdDisplay.prototype._formatSeekDuration = function(seek, duration) { 
 
-	var seekSec = Math.ceil(seek / 1000).toFixed(0); 
-	var seekMin = Math.floor(seekSec / 60); 
-	seekSec = seekSec - seekMin * 60; 
+	var seekSec = Math.floor(seek / 1000); // convert seek to seconds
+	var seekMin = Math.floor(seekSec / 60); // calculate whole seek minutes
+	seekSec = seekSec - (seekMin * 60); // remaining seconds 
    
-	var durMin = Math.floor(duration / 60); 
-	var durSec = duration - durMin * 60; 
+	var durMin = Math.floor(duration / 60); // calculate whole duration minutes
+	var durSec = duration - (durMin * 60); // remaining seconds
 
-	seekMin = seekMin % 99;
-	durMin = durMin % 99;
-	
+	// only two digits for minutes, so wrap back to 0 once we hit 100 
+	seekMin = seekMin % 100; 
+	durMin = durMin % 100;
+
+	// pad all minutes and seconds
 	if (seekMin < 10) (seekMin = "0" + seekMin);
 	if (seekSec < 10) (seekSec = "0" + seekSec);
 	if (durMin < 10)  (durMin = "0" + durMin);
-  if (durSec < 10)  (durSec = "0" + durSec);  
+  	if (durSec < 10)  (durSec = "0" + durSec);  
 	
- 	var txt = seekMin + ":" + seekSec + "/" + durMin + ":" + durSec;
+ 	var txt = seekMin + ":" + seekSec + " / " + durMin + ":" + durSec;
  
-	return txt.substr(0,COLS); 
+	return txt; 
 
 };
