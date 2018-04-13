@@ -71,7 +71,7 @@ lcdDisplay.prototype.pushState = function(state)  {
 
 lcdDisplay.prototype.displayTrackInfo = function(data,pos) {
 	
-  var self = this; 
+  	var self = this; 
 	var duration = data.duration;
 	
 	if (self.elapsed >= duration * 1000) {
@@ -117,9 +117,9 @@ lcdDisplay.prototype.displayTrackInfo = function(data,pos) {
 lcdDisplay.prototype._needStartDisplayInfo = function(state) {
 
 	var self = this;
-  return  ((state.status === 'play' && self.currentState.status === 'stop') ||
-        	self.currentState.artist !== state.artist || 
-  	  	  self.currentState.title !== state.title);
+  	return  ((state.status === 'play' && self.currentState.status === 'stop') ||
+    	self.currentState.artist !== state.artist || 
+  		self.currentState.title !== state.title);
   
 };
 
