@@ -23,6 +23,9 @@ function ControllerlcdHD47780(context) {
 ControllerlcdHD47780.prototype.onVolumioStart = function() {
 
 	var self = this;
+	var configFile=this.commandRouter.pluginManager.getConfigurationFile(this.context,'config.json');
+	this.config = new (require('v-conf'))();
+	this.config.loadFile(configFile);
 	self.logger.info("lcdHD47780 initialized");
 	return libQ.resolve();
 	
@@ -30,11 +33,14 @@ ControllerlcdHD47780.prototype.onVolumioStart = function() {
 
 ControllerlcdHD47780.prototype.onStart = function() {
 	
-	var self = this;	
-	self.lcdDisplay = new lcdDisplay(self.context);
-	self.configFile=self.commandRouter.pluginManager.getConfigurationFile(self.context,'config.json');
-    self.logger.info("lcdHD47780 started");	
-	return libQ.resolve();
+	var self = this;
+	var defer=libQ.defer();
+	
+	self.logger.info("lcdHD47780 started");	
+	
+	// Once the Plugin has successfull started resolve the promise
+	defer.resolve();
+    return defer.promise;
 	
 };
 
