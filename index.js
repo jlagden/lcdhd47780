@@ -36,6 +36,7 @@ ControllerlcdHD47780.prototype.onStart = function() {
 	var self = this;
 	var defer=libQ.defer();
 	
+	self.lcdDisplay = new lcdDisplay(self.context); 
 	self.logger.info("lcdHD47780 started");	
 	
 	// Once the Plugin has successfull started resolve the promise
