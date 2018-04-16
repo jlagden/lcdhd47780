@@ -78,7 +78,7 @@ lcdDisplay.prototype.displayTrackInfo = function(data,pos) {
 		self.endOfSong();
 	} else {
 	
-		var trackInfo = data.artist + '-' + data.title;
+		var trackInfo = data.artist + ' - ' + data.title;
 
   	if (trackInfo.length > COLS) {
 			// Piece the string together in such a way so it constantly scrolling
