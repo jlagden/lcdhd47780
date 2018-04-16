@@ -2,6 +2,9 @@
 
 var libQ = require('kew');
 var fs=require('fs-extra');
+var config = new (require('v-conf'))();
+var exec = require('child_process').exec;
+var execSync = require('child_process').execSync;
 var lcdDisplay = require('./lcdDisplay');
 
 module.exports = ControllerlcdHD47780;
