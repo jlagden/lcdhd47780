@@ -1,3 +1,4 @@
+
 'use strict';
 
 var libQ = require('kew');
@@ -41,15 +42,20 @@ ControllerlcdHD47780.prototype.onStart = function() {
 	
 	// Once the Plugin has successfull started resolve the promise
 	defer.resolve();
-    return defer.promise;
+	return defer.promise;
 	
 };
 
 ControllerlcdHD47780.prototype.onStop = function() {
 
-	var self = this;	
-	self.lcdDisplay.close();	
-	return libQ.resolve();
+	var self = this;
+    var defer=libQ.defer();
+
+	self.lcdDisplay.close();
+	
+    // Once the Plugin has successfull stopped resolve the promise
+    defer.resolve();
+    return libQ.resolve();
 	
 }
 
