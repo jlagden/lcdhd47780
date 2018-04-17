@@ -81,11 +81,11 @@ ControllerExamplePlugin.prototype.getUIConfig = function() {
 	.then(function(uiconf) {
 
 		uiconf.sections[0].content[0].value = self.config.get('RS');
-			uiconf.sections[0].content[1].value = self.config.get('E');
-			uiconf.sections[0].content[2].value = self.config.get('D4');
-			uiconf.sections[0].content[3].value = self.config.get('D5');
-			uiconf.sections[0].content[4].value = self.config.get('D6');
-            uiconf.sections[0].content[5].value = self.config.get('D7');
+		uiconf.sections[0].content[1].value = self.config.get('E');
+		uiconf.sections[0].content[2].value = self.config.get('D4');
+		uiconf.sections[0].content[3].value = self.config.get('D5');
+		uiconf.sections[0].content[4].value = self.config.get('D6');
+		uiconf.sections[0].content[5].value = self.config.get('D7');
 		defer.resolve(uiconf);
 
 	})
@@ -99,27 +99,30 @@ ControllerExamplePlugin.prototype.getUIConfig = function() {
 
 };
 
-ControllerlcdHD47780.prototype.getConf = function(varName) {
+ControllerExamplePlugin.prototype.setUIConfig = function(data) {
 
 	var self = this;
-	this.config = new (require('v-conf'))()
-	this.config.loadFile(configFile)
-	return libQ.resolve();
+
+	//Perform your installation tasks here
 
 };
 
-ControllerlcdHD47780.prototype.saveGPIOConfig = function(data) {
-	
+
+
+ControllerExamplePlugin.prototype.getConf = function(varName) {
+
 	var self = this;
-	var sucessful = true;
-	
-}
 
-ControllerlcdHD47780.prototype.setUIConfig = function(data) {
+	//Perform your installation tasks here
 
-      var self = this;
-      self.logger.info("Updating UI config");
-      var uiconf = fs.readJsonSync(__dirname + '/UIConfig.json');
-      return libQ.resolve();
+};
+
+
+
+ControllerExamplePlugin.prototype.setConf = function(varName, varValue) {
+
+	var self = this;
+
+	//Perform your installation tasks here
 
 };
