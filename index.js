@@ -10,51 +10,52 @@ var lcdDisplay = require('./lcdDisplay');
 module.exports = ControllerlcdHD47780;
 
 function ControllerlcdHD47780(context) {
-	// This fixed variable will let us refer to 'this' object at deeper scopes
-	var self = this;
 
-	this.context = context;
-	this.commandRouter = this.context.coreCommand;
-	this.logger = this.context.logger;
-	this.configManager = this.context.configManager;
+    // This fixed variable will let us refer to 'this' object at deeper scopes
+    var self = this;
+
+    this.context = context;
+    this.commandRouter = this.context.coreCommand;
+    this.logger = this.context.logger;
+    this.configManager = this.context.configManager;
 
 }
 
 ControllerlcdHD47780.prototype.onVolumioStart = function() {
 
-	var self = this;	
-	var configFile=this.commandRouter.pluginManager.getConfigurationFile(this.context,'config.json');
-	this.config = new (require('v-conf'))();
-	this.config.loadFile(configFile);
-	self.logger.info("lcdHD47780 initialized");
-	return libQ.resolve();
+    var self = this;	
+    var configFile=this.commandRouter.pluginManager.getConfigurationFile(this.context,'config.json');
+    this.config = new (require('v-conf'))();
+    this.config.loadFile(configFile);
+    self.logger.info("lcdHD47780 initialized");
+    return libQ.resolve();
 	
 }
 
 ControllerlcdHD47780.prototype.onStart = function() {
 	
-	var self = this;
-	var defer=libQ.defer();
+    var self = this;
+    var defer=libQ.defer();
 	
-	self.lcdDisplay = new lcdDisplay(self.context); 
-	self.logger.info("lcdHD47780 started");	
+    self.lcdDisplay = new lcdDisplay(self.context); 
+    self.logger.info("lcdHD47780 started");	
 	
-	// Once the Plugin has successfull started resolve the promise
-	defer.resolve();
-	return defer.promise;
+    // Once the Plugin has successfull started resolve the promise
+    defer.resolve();
+    return defer.promise;
 	
 };
 
 ControllerlcdHD47780.prototype.onStop = function() {
 
-	var self = this;
-	var defer=libQ.defer();
+    var self = this;
+    var defer=libQ.defer();
 
-	self.lcdDisplay.close();
+    self.lcdDisplay.close();
 	
-	// Once the Plugin has successfull stopped resolve the promise
-	defer.resolve();
-	return libQ.resolve();
+    // Once the Plugin has successfull stopped resolve the promise
+    defer.resolve();
+    return libQ.resolve();
 	
 }
 
@@ -78,20 +79,20 @@ ControllerExamplePlugin.prototype.getUIConfig = function() {
         __dirname+'/i18n/strings_en.json',
         __dirname + '/UIConfig.json')
 		
-	.then(function(uiconf) {
+    .then(function(uiconf) {
 
-		uiconf.sections[0].content[0].value = self.config.get('RS');
-		uiconf.sections[0].content[1].value = self.config.get('E');
-		uiconf.sections[0].content[2].value = self.config.get('D4');
-		uiconf.sections[0].content[3].value = self.config.get('D5');
-		uiconf.sections[0].content[4].value = self.config.get('D6');
-		uiconf.sections[0].content[5].value = self.config.get('D7');
-		defer.resolve(uiconf);
+        uiconf.sections[0].content[0].value = self.config.get('RS');
+        uiconf.sections[0].content[1].value = self.config.get('E');
+        uiconf.sections[0].content[2].value = self.config.get('D4');
+        uiconf.sections[0].content[3].value = self.config.get('D5');
+        uiconf.sections[0].content[4].value = self.config.get('D6');
+        uiconf.sections[0].content[5].value = self.config.get('D7');
+        defer.resolve(uiconf);
 
 	})
 	.fail(function() {
 
-		defer.reject(new Error());
+        defer.reject(new Error());
 
 	});
 
@@ -101,28 +102,21 @@ ControllerExamplePlugin.prototype.getUIConfig = function() {
 
 ControllerExamplePlugin.prototype.setUIConfig = function(data) {
 
-	var self = this;
-
-	//Perform your installation tasks here
+    var self = this;
+    //Perform your installation tasks here
 
 };
-
-
 
 ControllerExamplePlugin.prototype.getConf = function(varName) {
 
-	var self = this;
-
-	//Perform your installation tasks here
+    var self = this;
+    //Perform your installation tasks here
 
 };
 
-
-
 ControllerExamplePlugin.prototype.setConf = function(varName, varValue) {
 
-	var self = this;
-
+    var self = this;
 	//Perform your installation tasks here
 
 };
