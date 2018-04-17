@@ -1,4 +1,3 @@
-
 'use strict';
 
 var libQ = require('kew');
@@ -23,7 +22,8 @@ function ControllerlcdHD47780(context) {
 
 ControllerlcdHD47780.prototype.onVolumioStart = function() {
 
-	var self = this;	var configFile=this.commandRouter.pluginManager.getConfigurationFile(this.context,'config.json');
+	var self = this;	
+	var configFile=this.commandRouter.pluginManager.getConfigurationFile(this.context,'config.json');
 	this.config = new (require('v-conf'))();
 	this.config.loadFile(configFile);
 	self.logger.info("lcdHD47780 initialized");
