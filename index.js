@@ -35,31 +35,31 @@ ControllerlcdHD47780.prototype.onVolumioStart = function() {
 
 ControllerlcdHD47780.prototype.onStart = function() {
 	
-    var self = this;
-    var defer=libQ.defer();
+	var self = this;
+	var defer=libQ.defer();
 	
-    self.lcdDisplay = new lcdDisplay(self.context); 
-    self.logger.info("lcdHD47780 started");	
+	self.lcdDisplay = new lcdDisplay(self.context); 
+	self.logger.info("lcdHD47780 started");	
 	
 	try {
 
-        self.socket = io.connect('http://localhost:3000');
-        self.socket.on('pushState', function (data) {
+		self.socket = io.connect('http://localhost:3000');
+		self.socket.on('pushState', function (data) {
 			self.logger.info('lcdHD47780::pushState:Push State recieved');
 			self.logger.info(data);
 		});
 		self.logger.info('lcdHD47780::onStart:Start Successful');
 		// Once the Plugin has successfull started resolve the promise
-        defer.resolve();
+		defer.resolve();
 
-    } catch(err) {
+	} catch(err) {
 
-        this.logger.error('lcdHD47780::onStart: ' + err);
-        defer.reject(err);
+		this.logger.error('lcdHD47780::onStart: ' + err);
+		defer.reject(err);
 
-    }
+	}
 
-    return defer.promise;
+	return defer.promise;
 	
 };
 
