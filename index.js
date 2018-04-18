@@ -120,21 +120,21 @@ ControllerlcdHD47780.prototype.getUIConfig = function() {
 
 ControllerlcdHD47780.prototype.setUIConfig = function(data) {
 
-    var self = this;
-    //Perform your installation tasks here
+	var self = this;
+	//Perform your installation tasks here
 
 };
 
 ControllerlcdHD47780.prototype.getConf = function(varName) {
 
-    var self = this;
-    //Perform your installation tasks here
+	var self = this;
+	//Perform your installation tasks here
 
 };
 
 ControllerlcdHD47780.prototype.setConf = function(varName, varValue) {
 
-    var self = this;
+	var self = this;
 	//Perform your installation tasks here
 
 };
