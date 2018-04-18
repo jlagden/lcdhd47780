@@ -5,6 +5,7 @@ var fs=require('fs-extra');
 var config = new (require('v-conf'))();
 var exec = require('child_process').exec;
 var execSync = require('child_process').execSync;
+var io = require('socket.io-client');
 var lcdDisplay = require('./lcdDisplay');
 
 module.exports = ControllerlcdHD47780;
@@ -40,8 +41,24 @@ ControllerlcdHD47780.prototype.onStart = function() {
     self.lcdDisplay = new lcdDisplay(self.context); 
     self.logger.info("lcdHD47780 started");	
 	
-    // Once the Plugin has successfull started resolve the promise
-    defer.resolve();
+	try {
+
+        self.socket = io.connect('http://localhost:3000');
+        self.socket.on('pushState', function (data) {
+			self.logger.info('lcdHD47780::pushState:Push State recieved');
+			self.logger.info(data);
+		});
+		self.logger.info('lcdHD47780::onStart:Start Successful');
+		// Once the Plugin has successfull started resolve the promise
+        defer.resolve();
+
+    } catch(err) {
+
+        this.logger.error('lcdHD47780::onStart: ' + err);
+        defer.reject(err);
+
+    }
+
     return defer.promise;
 	
 };
