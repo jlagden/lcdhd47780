@@ -59,7 +59,7 @@ ControllerlcdHD47780.prototype.onStop = function() {
 	
 }
 
-ControllerExamplePlugin.prototype.onRestart = function() {
+ControllerlcdHD47780.prototype.onRestart = function() {
 
     var self = this;
     // Optional, use if you need it
@@ -68,7 +68,7 @@ ControllerExamplePlugin.prototype.onRestart = function() {
 
 // Configuration Methods -----------------------------------------------------------------------------
 
-ControllerExamplePlugin.prototype.getUIConfig = function() {
+ControllerlcdHD47780.prototype.getUIConfig = function() {
 
     var defer = libQ.defer();
     var self = this;
@@ -100,23 +100,32 @@ ControllerExamplePlugin.prototype.getUIConfig = function() {
 
 };
 
-ControllerExamplePlugin.prototype.setUIConfig = function(data) {
+ControllerlcdHD47780.prototype.setUIConfig = function(data) {
 
     var self = this;
     //Perform your installation tasks here
 
 };
 
-ControllerExamplePlugin.prototype.getConf = function(varName) {
+ControllerlcdHD47780.prototype.getConf = function(varName) {
 
     var self = this;
     //Perform your installation tasks here
 
 };
 
-ControllerExamplePlugin.prototype.setConf = function(varName, varValue) {
+ControllerlcdHD47780.prototype.setConf = function(varName, varValue) {
 
     var self = this;
 	//Perform your installation tasks here
 
+};
+
+ControllerlcdHD47780.prototype.saveGPIOConfig = function(data) {
+	
+	var self = this;
+	var defer = libQ.defer();
+	
+	return defer.promise;
+	
 };
