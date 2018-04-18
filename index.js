@@ -52,6 +52,7 @@ ControllerlcdHD47780.prototype.onStop = function() {
     var defer=libQ.defer();
 
     self.lcdDisplay.close();
+	self.logger.info("lcdHD47780 stopped");	
 	
     // Once the Plugin has successfull stopped resolve the promise
     defer.resolve();
