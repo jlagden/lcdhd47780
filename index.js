@@ -12,24 +12,24 @@ module.exports = ControllerlcdHD47780;
 
 function ControllerlcdHD47780(context) {
 
-    // This fixed variable will let us refer to 'this' object at deeper scopes
-    var self = this;
+	// This fixed variable will let us refer to 'this' object at deeper scopes
+ 	var self = this;
 
-    this.context = context;
-    this.commandRouter = this.context.coreCommand;
-    this.logger = this.context.logger;
-    this.configManager = this.context.configManager;
+	this.context = context;
+	this.commandRouter = this.context.coreCommand;
+	this.logger = this.context.logger;
+	this.configManager = this.context.configManager;
 
 }
 
 ControllerlcdHD47780.prototype.onVolumioStart = function() {
 
-    var self = this;	
-    var configFile=this.commandRouter.pluginManager.getConfigurationFile(this.context,'config.json');
-    this.config = new (require('v-conf'))();
-    this.config.loadFile(configFile);
-    self.logger.info("lcdHD47780 initialized");
-    return libQ.resolve();
+	var self = this;	
+	var configFile=this.commandRouter.pluginManager.getConfigurationFile(this.context,'config.json');
+	this.config = new (require('v-conf'))();
+	this.config.loadFile(configFile);
+	self.logger.info("lcdHD47780 initialized");
+	return libQ.resolve();
 	
 }
 
@@ -65,22 +65,22 @@ ControllerlcdHD47780.prototype.onStart = function() {
 
 ControllerlcdHD47780.prototype.onStop = function() {
 
-    var self = this;
-    var defer = libQ.defer();
+	var self = this;
+	var defer = libQ.defer();
 
-    self.lcdDisplay.close();
+	self.lcdDisplay.close();
 	self.logger.info("lcdHD47780 stopped");	
 	
-    // Once the Plugin has successfull stopped resolve the promise
-    defer.resolve();
-    return libQ.resolve();
+	// Once the Plugin has successfull stopped resolve the promise
+	defer.resolve();
+	return libQ.resolve();
 	
 }
 
 ControllerlcdHD47780.prototype.onRestart = function() {
 
-    var self = this;
-    // Optional, use if you need it
+	var self = this;
+	// Optional, use if you need it
 
 };
 
@@ -88,33 +88,33 @@ ControllerlcdHD47780.prototype.onRestart = function() {
 
 ControllerlcdHD47780.prototype.getUIConfig = function() {
 
-    var defer = libQ.defer();
-    var self = this;
+	var defer = libQ.defer();
+	var self = this;
 
-    var lang_code = this.commandRouter.sharedVars.get('language_code');
+	var lang_code = this.commandRouter.sharedVars.get('language_code');
 
-    self.commandRouter.i18nJson(__dirname+'/i18n/strings_'+lang_code+'.json',
-        __dirname+'/i18n/strings_en.json',
-        __dirname + '/UIConfig.json')
+	self.commandRouter.i18nJson(__dirname+'/i18n/strings_'+lang_code+'.json',
+								__dirname+'/i18n/strings_en.json',
+								__dirname + '/UIConfig.json')
 		
-    .then(function(uiconf) {
+	.then(function(uiconf) {
 
-        uiconf.sections[0].content[0].value = self.config.get('RS');
-        uiconf.sections[0].content[1].value = self.config.get('E');
-        uiconf.sections[0].content[2].value = self.config.get('D4');
-        uiconf.sections[0].content[3].value = self.config.get('D5');
-        uiconf.sections[0].content[4].value = self.config.get('D6');
-        uiconf.sections[0].content[5].value = self.config.get('D7');
-        defer.resolve(uiconf);
+		uiconf.sections[0].content[0].value = self.config.get('RS');
+		uiconf.sections[0].content[1].value = self.config.get('E');
+		uiconf.sections[0].content[2].value = self.config.get('D4');
+		uiconf.sections[0].content[3].value = self.config.get('D5');
+		uiconf.sections[0].content[4].value = self.config.get('D6');
+		uiconf.sections[0].content[5].value = self.config.get('D7');
+		defer.resolve(uiconf);
 
 	})
 	.fail(function() {
 
-        defer.reject(new Error());
+		defer.reject(new Error());
 
 	});
 
-    return defer.promise;
+	return defer.promise;
 
 };
 
