@@ -142,8 +142,14 @@ ControllerlcdHD47780.prototype.setConf = function(varName, varValue) {
 ControllerlcdHD47780.prototype.saveGPIOConfig = function(data) {
 	
 	var self = this;
-	var defer = libQ.defer();
 	
-	return defer.promise;
+	self.config.set('RS',data.RS);
+	self.config.set('E',data.E);
+	self.config.set('D4',data.D4);
+	self.config.set('D5',data.D5);
+	self.config.set('D6',data.D6);
+	self.config.set('D7',data.D7);
+	
+	self.commandRouter.pushToastMessage('success',"Save","GPIO Settings saved");
 	
 };
