@@ -44,11 +44,7 @@ ControllerlcdHD47780.prototype.onStart = function() {
 	try {
 
 		self.socket = io.connect('http://localhost:3000');
-		self.socket.on('pushState', function (data) {
-
-			self.logger.info('lcdHD47780::pushState:Push State recieved');
-			self.logger.info(data);
-		});
+		self.socket.on('pushState', this.updateLcd.bind(this)); 
 		self.logger.info('lcdHD47780::onStart:Start Successful');
 		// Once the Plugin has successfull started resolve the promise
 		defer.resolve();
@@ -84,6 +80,13 @@ ControllerlcdHD47780.prototype.onRestart = function() {
 	// Optional, use if you need it
 	// Restart here as the GPIO numbers have probably been changed
 
+};
+
+ControllerlcdHD47780.prototype.updateLcd = function(state) {
+	
+	self.logger.info('lcdHD47780::pushState:Push State recieved');
+	self.logger.info(state);
+	
 };
 
 // Configuration Methods -----------------------------------------------------------------------------
