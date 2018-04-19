@@ -45,6 +45,7 @@ ControllerlcdHD47780.prototype.onStart = function() {
 
 		self.socket = io.connect('http://localhost:3000');
 		self.socket.on('pushState', function (data) {
+
 			self.logger.info('lcdHD47780::pushState:Push State recieved');
 			self.logger.info(data);
 		});
@@ -81,6 +82,7 @@ ControllerlcdHD47780.prototype.onRestart = function() {
 
 	var self = this;
 	// Optional, use if you need it
+	// Restart here as the GPIO numbers have probably been changed
 
 };
 
