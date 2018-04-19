@@ -1,8 +1,8 @@
 'use strict';
 
 var libQ = require('kew');
-var fs=require('fs-extra');
-var config = new (require('v-conf'))();
+var fs = require('fs-extra');
+var config = new(require('v-conf'))();
 var exec = require('child_process').exec;
 var execSync = require('child_process').execSync;
 var io = require('socket.io-client');
@@ -36,7 +36,7 @@ ControllerlcdHD47780.prototype.onVolumioStart = function() {
 ControllerlcdHD47780.prototype.onStart = function() {
 	
 	var self = this;
-	var defer=libQ.defer();
+	var defer = libQ.defer();
 	
 	self.lcdDisplay = new lcdDisplay(self.context); 
 	self.logger.info("lcdHD47780 started");	
@@ -66,7 +66,7 @@ ControllerlcdHD47780.prototype.onStart = function() {
 ControllerlcdHD47780.prototype.onStop = function() {
 
     var self = this;
-    var defer=libQ.defer();
+    var defer = libQ.defer();
 
     self.lcdDisplay.close();
 	self.logger.info("lcdHD47780 stopped");	
