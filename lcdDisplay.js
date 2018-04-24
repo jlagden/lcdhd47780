@@ -8,7 +8,7 @@ var Lcd = require('lcd');
 
 module.exports = lcdDisplay;
 
-function lcdDisplay(context) {
+function lcdDisplay(context,config) {
   
 	var self = this;
 	
