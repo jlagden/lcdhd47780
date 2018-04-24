@@ -41,7 +41,7 @@ ControllerlcdHD47780.prototype.onStart = function() {
 	
 	try {
 
-		self.lcdDisplay = new lcdDisplay(self.context); 
+		self.lcdDisplay = new lcdDisplay(self.context,self.config); 
 		self.socket = io.connect('http://localhost:3000');
 		self.socket.on('pushState', this.updateLcd.bind(this)); 
 		self.logger.info('[lcdHD47780] Plugin started');
