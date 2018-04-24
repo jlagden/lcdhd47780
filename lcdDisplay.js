@@ -20,7 +20,7 @@ function lcdDisplay(context,config) {
 	self.logger = self.context.logger;
 
 	// Test GPIO pins, eventually get this from configuration
-	self.lcd = new Lcd({rs: 8, e: 7, data: [25, 24, 23, 18], cols: 16, rows: 2});
+	self.lcd = new Lcd({rs: config.get('RS'), e: config.get('E'), data: [config.get('D4'), config.get('D5'),config.get('D6'), config.get('D7')], cols: 16, rows: 2});
   
 }
 
