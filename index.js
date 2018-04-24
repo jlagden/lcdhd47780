@@ -18,6 +18,7 @@ function ControllerlcdHD47780(context) {
 	this.context = context;
 	this.commandRouter = this.context.coreCommand;
 	this.logger = this.context.logger;
+
 	this.configManager = this.context.configManager;
 
 }
@@ -62,12 +63,22 @@ ControllerlcdHD47780.prototype.onStop = function() {
 
 	var self = this;
 	var defer = libQ.defer();
-
-	self.lcdDisplay.close();
-	self.logger.info("lcdHD47780 stopped");	
 	
-	// Once the Plugin has successfull stopped resolve the promise
-	defer.resolve();
+	try {
+		
+		self.lcdDisplay.close();
+		self.logger.info("[lcdHD47780] Plugin stopped");	
+		
+		// Once the Plugin has successfull stopped resolve the promise
+		defer.resolve();
+		
+	} catch(err) {
+		
+		self.logger.error('[lcdHD47780] Plugin stop failed: ' + err);
+		defer.reject(err);
+
+	}
+	
 	return libQ.resolve();
 	
 }
@@ -76,13 +87,12 @@ ControllerlcdHD47780.prototype.onRestart = function() {
 
 	var self = this;
 	// Optional, use if you need it
-	// Restart here as the GPIO numbers have probably been changed
 
 };
 
 ControllerlcdHD47780.prototype.updateLcd = function(state) {
 	
-	self.logger.info('lcdHD47780::pushState:Push State recieved');
+	self.logger.info('[lcdHD47780] Push State recieved:');
 	self.logger.info(state);
 	
 };
