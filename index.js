@@ -28,7 +28,7 @@ ControllerlcdHD47780.prototype.onVolumioStart = function() {
 	var configFile=this.commandRouter.pluginManager.getConfigurationFile(this.context,'config.json');
 	this.config = new (require('v-conf'))();
 	this.config.loadFile(configFile);
-	self.logger.info("lcdHD47780 initialized");
+	self.logger.info('[lcdHD47780] Plugin initialized');
 	return libQ.resolve();
 	
 }
@@ -38,20 +38,18 @@ ControllerlcdHD47780.prototype.onStart = function() {
 	var self = this;
 	var defer = libQ.defer();
 	
-	self.lcdDisplay = new lcdDisplay(self.context); 
-	self.logger.info("lcdHD47780 started");	
-	
 	try {
 
+		self.lcdDisplay = new lcdDisplay(self.context); 
 		self.socket = io.connect('http://localhost:3000');
 		self.socket.on('pushState', this.updateLcd.bind(this)); 
-		self.logger.info('lcdHD47780::onStart:Start Successful');
+		self.logger.info('[lcdHD47780] Plugin started');
 		// Once the Plugin has successfull started resolve the promise
 		defer.resolve();
 
 	} catch(err) {
 
-		this.logger.error('lcdHD47780::onStart: ' + err);
+		self.logger.error('[lcdHD47780] Plugin startup failed: ' + err);
 		defer.reject(err);
 
 	}
