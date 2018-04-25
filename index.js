@@ -86,7 +86,15 @@ ControllerlcdHD47780.prototype.onStop = function() {
 ControllerlcdHD47780.prototype.onRestart = function() {
 
 	var self = this;
-	// Optional, use if you need it
+	
+	try {
+		self.logger.info('[lcdHD47780] Plugin restarting...');
+		self.lcdDisplay.close();
+		self.lcdDisplay = new lcdDisplay(self.context,self.config);
+		self.logger.info('[lcdHD47780] Plugin started');
+	} catch(err) {
+		self.logger.error('[lcdHD47780] Restart failed: ' + err);
+	}
 
 };
 
