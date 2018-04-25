@@ -1,34 +1,36 @@
 {
-  "page": {
-    "label": "LCD HD47780 Configuration"
-  },
-  "sections": [
-    {
-      "id": "section_gpio",
-      "element": "section",
-      "label": "GPIO Configuration",
-      "icon": "fa-microchip",
-      "onSave": {"type":"controller", "endpoint":"","method":"saveGPIOConfig"},
-      "saveButton": {
-        "label": "Save",
-        "data": [
-          "RS",
-          "E",
-          "D4",
-          "D5",
-          "D6",
-          "D7"
-        ]
-      },
-      "content": [
-        {
-          "id": "RS",
-          "type":"text",
-          "element":"input",
-          "doc": "GPIO number connected to RS Line on LCD",
-          "label": "GPIO RS",
-          "value":8
-        },
+	"page": {
+    	"label": "LCD HD47780 Configuration"
+	},
+	"sections": [
+		{
+			"id": "section_gpio",
+			"element": "section",
+			"label": "GPIO Configuration",
+			"icon": "fa-microchip",
+			"onSave": {"type":"controller", "endpoint":"","method":"saveGPIOConfig"},
+			"saveButton": {
+				"label": "Save",
+				"data": [
+					"RS",
+					"E",
+					"D4",
+					"D5",
+					"D6",
+					"D7",
+					"COLS",
+					"ROWS"
+				]
+			},
+			"content": [
+				{
+					"id": "RS",
+					"type":"text",
+					"element":"input",
+					"doc": "GPIO number connected to RS Line on LCD",
+					"label": "GPIO RS",
+					"value":8
+				},
         {
           "id": "E",
           "type":"text",
