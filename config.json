@@ -1,32 +1,32 @@
 {
 	"enabled": {
-    	"type": "boolean",
-    	"value": false
-  	},
-  	"RS": {
-    	"type": "number",
-    	"value": 0
-  	},
-  	"E": {
-    	"type": "number",
-    	"value": 0
-  	},
-  	"D4": {
-    	"type": "number",
-    	"value": 0
-  	},
-  	"D5": {
-    	"type": "number",
-    	"value": 0
-  	},
-  	"D6": {
-    	"type": "number",
-    	"value": 0
-  	},
-  	"D7": {
-    	"type": "number",
-    	"value": 0
-  	},
+		"type": "boolean",
+		"value": false
+	},
+	"RS": {
+		"type": "number",
+		"value": 0
+	},
+	"E": {
+		"type": "number",
+		"value": 0
+	},
+	"D4": {
+		"type": "number",
+		"value": 0
+	},
+	"D5": {
+		"type": "number",
+		"value": 0
+	},
+	"D6": {
+		"type": "number",
+		"value": 0
+	},
+	"D7": {
+		"type": "number",
+		"value": 0
+	},
 	"ROWS": {
 		"type": "number",
 		"value": 2
@@ -35,5 +35,4 @@
 		"type": "number",
 		"value": 16
 	}
-	
 }
