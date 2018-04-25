@@ -24,7 +24,8 @@
 			},
 			"content": [
 				{
-					"id": "RS"					"type":"text",
+					"id": "RS",
+					"type":"text",
 					"element":"input",
 					"doc": "GPIO number connected to RS Line on LCD",
 					"label": "GPIO RS",
