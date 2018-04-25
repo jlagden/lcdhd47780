@@ -24,55 +24,70 @@
 			},
 			"content": [
 				{
-					"id": "RS",
-					"type":"text",
+					"id": "RS"					"type":"text",
 					"element":"input",
 					"doc": "GPIO number connected to RS Line on LCD",
 					"label": "GPIO RS",
 					"value":8
 				},
-        {
-          "id": "E",
-          "type":"text",
-          "element":"input",
-          "doc": "GPIO number connected to E Line on LCD",
-          "label": "GPIO E",
-          "value":7
-        },
-        {
-          "id": "D4",
-          "type":"text",
-          "element": "input",
-          "doc": "GPIO number connected to D4 Line on LCD",
-          "label": "GPIO D4",
-          "value": 25
-        },
-        {
-          "id": "D5",
-          "type":"text",
-          "element": "input",
-          "doc": "GPIO number connected to D5 Line on LCD",
-          "label": "GPIO D5",
-          "value": 24
-        },
-        {
-          "id":"D6",
-          "type":"text",
-          "element": "input",
-          "doc": "GPIO number connected to D6 Line on LCD",
-          "label": "GPIO D6",
-          "value": 23
-        },
-        {
-          "id":"D7",
-          "type":"text",
-          "element": "input",
-          "doc": "GPIO number connected to D7 Line on LCD",
-          "label": "GPIO D7",
-          "value": 18
-        }
-      ]
-    }
-  ]
+				{
+					"id": "E",
+					"type":"text",
+					"element":"input",
+					"doc": "GPIO number connected to E Line on LCD",
+					"label": "GPIO E",
+					"value":7
+				},
+				{
+					"id": "D4",
+					"type":"text",
+					"element": "input",
+					"doc": "GPIO number connected to D4 Line on LCD",
+					"label": "GPIO D4",
+					"value": 25
+				},
+				{
+          			"id": "D5",
+					"type":"text",
+					"element": "input",
+					"doc": "GPIO number connected to D5 Line on LCD",
+					"label": "GPIO D5",
+					"value": 24
+				},
+				{
+					"id":"D6",
+					"type":"text",
+					"element": "input",
+					"doc": "GPIO number connected to D6 Line on LCD",
+					"label": "GPIO D6",
+					"value": 23
+				},
+				{
+					"id":"D7",
+					"type":"text",
+					"element": "input",
+					"doc": "GPIO number connected to D7 Line on LCD",
+					"label": "GPIO D7",
+					"value": 18
+				},
+				{
+					"id":"COLS",
+					"type":"text",
+					"element": "input",
+					"doc": "Number of columns the LCD display has",
+					"label": "Columns",
+					"value":16
+				},
+				{
+					"id":"ROWS",
+					"type":"text",
+					"element": "input",
+					"doc": "Number of rows the LCD display has",
+					"label": "Rows",
+					"value":2
+				}
+			]
+		}
+	]
 }
 
