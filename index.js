@@ -171,6 +171,8 @@ ControllerlcdHD47780.prototype.saveGPIOConfig = function(data) {
 	self.config.set('D6',data.D6);
 	self.config.set('D7',data.D7);
 	
+	self.onRestart();
+	
 	self.commandRouter.pushToastMessage('success',"Save","GPIO Settings saved");
 	
 };
