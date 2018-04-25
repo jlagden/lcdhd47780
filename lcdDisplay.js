@@ -21,6 +21,7 @@ function lcdDisplay(context,config) {
 
 	// Test GPIO pins, eventually get this from configuration
 	self.lcd = new Lcd({rs: config.get('RS'), e: config.get('E'), data: [config.get('D4'), config.get('D5'),config.get('D6'), config.get('D7')], cols: 16, rows: 2});
+	self.logger.info('[lcdHD47780] RS=' + config.get('RS') + ' E=' + config.get('E') + ' D4=' + config.get('D4') + ' D5=' + config.get('D5') + ' D6=' + config.get('D6') + ' D7=' + config.get('D7'));
   
 }
 
