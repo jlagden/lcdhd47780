@@ -1,7 +1,6 @@
 'use strict';
 
-var COLS = 16;
-var ROWS = 2;
+var COLS,ROWS,RS,E,D4,D5,D6,D7;
 var SCROLL_SPEED = 500;
 
 var Lcd = require('lcd');
@@ -18,10 +17,14 @@ function lcdDisplay(context,config) {
 
 	self.context = context;
 	self.logger = self.context.logger;
+	
+	COLS = config.get('COLS');	ROWS = config.get('ROWS');
+	RS = config.get('RS');		E = config.get('E');
+	D4 = config.get('D4');		D5 = config.get('D5');
+	D6 = config.get('D6');		D7 = config.get('D7');
 
-	// Test GPIO pins, eventually get this from configuration
-	self.lcd = new Lcd({rs: config.get('RS'), e: config.get('E'), data: [config.get('D4'), config.get('D5'),config.get('D6'), config.get('D7')], cols: 16, rows: 2});
-	self.logger.info('[lcdHD47780] RS=' + config.get('RS') + ' E=' + config.get('E') + ' D4=' + config.get('D4') + ' D5=' + config.get('D5') + ' D6=' + config.get('D6') + ' D7=' + config.get('D7'));
+	self.lcd = new Lcd({rs: RS, e: E, data: [D4, D5, D6, D7], cols: COLS, rows: ROWS});
+	self.logger.info('[lcdHD47780] COLS=' + COLS + ' ROWS=' + ROWS + ' RS=' + RS + ' E=' + E + ' D4=' + D4 + ' D5=' + D5 + ' D6=' + D6 + ' D7=' + D7);
   
 }
 
