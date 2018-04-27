@@ -84,7 +84,7 @@ lcdDisplay.prototype.displayTrackInfo = function(data,pos) {
 	
 		var trackInfo = data.artist + ' - ' + data.title;
 
-  	if (trackInfo.length > COLS) {
+		if (trackInfo.length > COLS) {
 			// Piece the string together in such a way so it constantly scrolling
 			trackInfo = trackInfo + '          ' + trackInfo.substr(0, COLS);
 		} else { // If the length is les then the display width, we just need to display it and forget about scrolling
@@ -101,15 +101,14 @@ lcdDisplay.prototype.displayTrackInfo = function(data,pos) {
 		// Print track info
 		self.lcd.print(trackInfo.substr(pos,COLS),function (err) {
 			
-      // Track info printed ok, set lets print elapsed / duration
-			self.lcd.setCursor(0,1);
-			self.lcd.print(self._formatSeekDuration(self.elapsed,duration),function (err) {
-				self.displayTimer = setTimeout(function () {
+      	// Track info printed ok, set lets print elapsed / duration
+		self.lcd.setCursor(0,1);
+		self.lcd.print(self._formatSeekDuration(self.elapsed,duration),function (err) {
+			self.displayTimer = setTimeout(function () {
 				if (self.currentState.status != 'pause')
-	  	    self.elapsed += SCROLL_SPEED;
+	  	    		self.elapsed += SCROLL_SPEED;
 				self.displayTrackInfo(data, pos + 1);
-				},SCROLL_SPEED);
-			});
+			},SCROLL_SPEED);
 		});
 	}
 
