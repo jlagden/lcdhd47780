@@ -32,7 +32,7 @@ ControllerlcdHD47780.prototype.onVolumioStart = function() {
 	self.logger.info('[lcdHD47780] Plugin initialized');
 	return libQ.resolve();
 	
-}
+};
 
 ControllerlcdHD47780.prototype.onStart = function() {
 	
@@ -81,7 +81,7 @@ ControllerlcdHD47780.prototype.onStop = function() {
 	
 	return libQ.resolve();
 	
-}
+};
 
 ControllerlcdHD47780.prototype.onRestart = function() {
 
@@ -99,6 +99,8 @@ ControllerlcdHD47780.prototype.onRestart = function() {
 };
 
 ControllerlcdHD47780.prototype.updateLcd = function(state) {
+	
+	var self = this;
 	
 	self.logger.info('[lcdHD47780] Push State recieved:');
 	self.logger.info(state);
