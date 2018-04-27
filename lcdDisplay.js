@@ -28,7 +28,7 @@ function lcdDisplay(context,config) {
 		self.logger.error('[lcdHD47780]' + err);
 	});
 	self.lcd.on('ready',function() {
-		self.logger.info('[lcdHD47780] COLS=' + COLS + ' ROWS=' + ROWS + ' RS=' + RS + ' E=' + E + ' D4=' + D4 + ' D5=' + D5 + ' D6=' + D6 + ' D7=' + D7);
+		self.logger.info('[lcdHD47780] LCD Ready COLS=' + COLS + ' ROWS=' + ROWS + ' RS=' + RS + ' E=' + E + ' D4=' + D4 + ' D5=' + D5 + ' D6=' + D6 + ' D7=' + D7);
   	});
 }				  
 
