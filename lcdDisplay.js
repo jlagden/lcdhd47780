@@ -24,7 +24,7 @@ function lcdDisplay(context,config) {
 	D6 = config.get('D6');		D7 = config.get('D7');
 
 	self.lcd = new Lcd({rs: RS, e: E, data: [D4, D5, D6, D7], cols: COLS, rows: ROWS});
-	self.lcd.on('error',fucntion(err) {
+	self.lcd.on('error',function(err) {
 		self.logger.error('[lcdHD47780]' + err);
 	});
 	self.lcd.on('ready',function() {
