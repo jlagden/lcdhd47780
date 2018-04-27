@@ -101,17 +101,17 @@ lcdDisplay.prototype.displayTrackInfo = function(data,pos) {
 		// Print track info
 		self.lcd.print(trackInfo.substr(pos,COLS),function (err) {
 			
-      	// Track info printed ok, set lets print elapsed / duration
-		self.lcd.setCursor(0,1);
-		self.lcd.print(self._formatSeekDuration(self.elapsed,duration),function (err) {
-			self.displayTimer = setTimeout(function () {
-				if (self.currentState.status != 'pause')
-	  	    		self.elapsed += SCROLL_SPEED;
-				self.displayTrackInfo(data, pos + 1);
-			},SCROLL_SPEED);
-		});
-	}
-
+      	    // Track info printed ok, set lets print elapsed / duration
+		    self.lcd.setCursor(0,1);
+		    self.lcd.print(self._formatSeekDuration(self.elapsed,duration),function (err) {
+			    self.displayTimer = setTimeout(function () {
+				    if (self.currentState.status != 'pause')
+	  	    		    self.elapsed += SCROLL_SPEED;
+				    self.displayTrackInfo(data, pos + 1);
+			    },SCROLL_SPEED);
+		    });
+	    });
+    }
 };
 
 // If we have started playing or the artist/track has changed we need
