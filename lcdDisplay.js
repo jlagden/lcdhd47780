@@ -24,9 +24,13 @@ function lcdDisplay(context,config) {
 	D6 = config.get('D6');		D7 = config.get('D7');
 
 	self.lcd = new Lcd({rs: RS, e: E, data: [D4, D5, D6, D7], cols: COLS, rows: ROWS});
-	self.logger.info('[lcdHD47780] COLS=' + COLS + ' ROWS=' + ROWS + ' RS=' + RS + ' E=' + E + ' D4=' + D4 + ' D5=' + D5 + ' D6=' + D6 + ' D7=' + D7);
-  
-}
+	self.lcd.on('error',fucntion(err) {
+		self.logger.error('[lcdHD47780]' + err);
+	});
+	self.lcd.on('ready',function() {
+		self.logger.info('[lcdHD47780] COLS=' + COLS + ' ROWS=' + ROWS + ' RS=' + RS + ' E=' + E + ' D4=' + D4 + ' D5=' + D5 + ' D6=' + D6 + ' D7=' + D7);
+  	});
+}				  
 
 lcdDisplay.prototype.close = function() {
   
