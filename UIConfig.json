@@ -8,7 +8,7 @@
 			"element": "section",
 			"label": "GPIO Configuration",
 			"icon": "fa-microchip",
-			"onSave": {"type":"controller", "endpoint":"","method":"saveGPIOConfig"},
+			"onSave": {"type":"controller", "endpoint":"miscellanea/lcdHD47780","method":"saveGPIOConfig"},
 			"saveButton": {
 				"label": "Save",
 				"data": [
