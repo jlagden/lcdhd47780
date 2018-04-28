@@ -109,6 +109,11 @@ ControllerlcdHD47780.prototype.updateLcd = function(state) {
 
 // Configuration Methods -----------------------------------------------------------------------------
 
+Controllerlcdhd47780.prototype.getConfigurationFiles = function()
+{
+	return ['config.json'];
+}
+
 ControllerlcdHD47780.prototype.getUIConfig = function() {
 
 	var defer = libQ.defer();
