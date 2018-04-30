@@ -28,7 +28,7 @@ function lcdDisplay(context,config) {
 	D6 = config.get('D6');		D7 = config.get('D7');
 
 	self.lcd = new Lcd({rs: RS, e: E, data: [D4, D5, D6, D7], cols: COLS, rows: ROWS});
-	
+
 	// Handle any errors we forget about so they don't crash Node
 	self.lcd.on('error',function(err) {
 		self.logger.error('[lcdHD47780] LCD Error: ' + err);
@@ -50,6 +50,8 @@ lcdDisplay.prototype.close = function() {
 	});
   
 };
+
+// TODO: check for endOfSong here?
 
 lcdDisplay.prototype.endOfSong = function() {
   
