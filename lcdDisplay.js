@@ -15,8 +15,12 @@ function lcdDisplay(context,config) {
 	self.currentState = undefined;
 	self.elapsed = 0;
 
+	// Set up logger
+	
 	self.context = context;
 	self.logger = self.context.logger;
+	
+	// Get configuration parameters
 	
 	COLS = config.get('COLS');	ROWS = config.get('ROWS');
 	RS = config.get('RS');		E = config.get('E');
@@ -30,7 +34,7 @@ function lcdDisplay(context,config) {
 		self.logger.error('[lcdHD47780] LCD Error: ' + err);
 	});
 	self.lcd.on('ready',function() {
-		self.logger.info('[lcdHD47780] LCD Ready COLS=' + COLS + ' ROWS=' + ROWS + ' RS=' + RS + ' E=' + E + ' D4=' + D4 + ' D5=' + D5 + ' D6=' + D6 + ' D7=' + D7);
+		self.logger.info('[lcdHD47780] LCD Ready COLS={$COLS} ROWS={$ROWS} RS={$RS} E={$E} D4={$D4} D5={$D5} D6={$D6} D7={$D7}');
   	});
 }				  
 
