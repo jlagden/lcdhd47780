@@ -132,7 +132,25 @@ lcdDisplay.prototype._needStartDisplayInfo = function(state) {
   
 };
 
-lcdDisplay.prototype._formatTrackInfo = function(state) {
+// In some cases (eg. radio station) only the artist or the title is actually populated
+// so we need to check what is populated
+// Also if we don't have that info or we aren't playing / paused then just display
+// a placeholder
+
+lcdDisplay.prototype._formatTrackInfo = function(data) {
+	
+	var txt = '';
+	if((data.status !== 'play' || data.status !== 'pause') || (!data.artist && !data.title)) {
+		txt = 'Volumio'
+	} else {
+		if (data.artist) {
+			txt = data.artist;
+		}
+		if(data.title) {
+			txt += txt ? ` - ${data.title}` : data.title;
+		}
+	}
+	return txt;
 	
 }
 
