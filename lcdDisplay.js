@@ -132,6 +132,10 @@ lcdDisplay.prototype._needStartDisplayInfo = function(state) {
   
 };
 
+lcdDisplay.prototype._formatTrackInfo = function(state) {
+	
+}
+
 // Formats the seek and duration into a text format suitable for display
 // seek (seek time in milliseconds)
 // duration (duration time in seconds)
