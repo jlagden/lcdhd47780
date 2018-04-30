@@ -143,7 +143,7 @@ lcdDisplay.prototype._formatSeekDuration = function(seek, duration) {
 	seekSec = seekSec - (seekMin * 60); // remaining seconds 
    
 	var durMin = Math.floor(duration / 60); // calculate whole duration minutes
-	var durSec = duration - (durMin * 60); // remaining seconds
+	var durSec = duration % 60 // remaining seconds
 
 	// only two digits for minutes, so wrap back to 0 once we hit 100 
 	seekMin = seekMin % 100; 
