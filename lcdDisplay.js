@@ -44,7 +44,10 @@ lcdDisplay.prototype.close = function() {
 	if (self.displayTimer !== undefined) {
 		clearTimeout(self.displayTimer);
 	}
-	self.lcd.close();
+	// Clear first before close so everything is tidy
+	self.lcd.clear(function(err) {
+		self.lcd.close();
+	});
   
 };
 
