@@ -13,6 +13,10 @@ function lcdDisplay(context,config) {
 	
 	self.displayTimer = undefined;
 	self.currentState = undefined;
+	
+	// Some music sources don't specify a duration (eg. streaming music)
+	// If so, we don't display the duration
+	self.fixedTrackLength = false;
 	self.elapsed = 0;
 
 	// Set up logger
@@ -69,6 +73,7 @@ lcdDisplay.prototype.pushState = function(state)  {
 	
 	var self = this;
 	self.elapsed = state.seek;
+	self.fixedTrackLength = state.duration > 0 ? true : false;
 	if (state.status === 'play') {		
 		if (self._needStartDisplayInfo(state)) { // Clear the timeout and start displayInfo again
 			clearTimeout(self.displayTimer);
