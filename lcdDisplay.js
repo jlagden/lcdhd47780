@@ -174,6 +174,7 @@ lcdDisplay.prototype._formatTrackInfo = function(data) {
 
 lcdDisplay.prototype._formatSeekDuration = function(seek, duration) { 
 
+	var self = this;
 	var seekSec = Math.floor(seek / 1000); // convert seek to seconds
 	var seekMin = Math.floor(seekSec / 60); // calculate whole seek minutes
 	seekSec = seekSec - (seekMin * 60); // remaining seconds 
@@ -191,8 +192,11 @@ lcdDisplay.prototype._formatSeekDuration = function(seek, duration) {
 	if (durMin < 10)  (durMin = "0" + durMin);
   	if (durSec < 10)  (durSec = "0" + durSec);  
 	
- 	var txt = seekMin + ":" + seekSec + " / " + durMin + ":" + durSec;
- 
+	var txt;
+	if (self.fixedTrackLength)
+ 		txt = seekMin + ":" + seekSec + " / " + durMin + ":" + durSec;
+ 	else
+		txt = seekMin + ":" + seekSec;
 	return txt; 
 
 };
