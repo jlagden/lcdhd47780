@@ -98,7 +98,7 @@ lcdDisplay.prototype.displayTrackInfo = function(data,pos) {
   	var self = this; 
 	var duration = data.duration;
 	
-	if (self.elapsed >= duration * 1000) {
+	if (self.fixedTrackLength && (self.elapsed >= duration * 1000)) {
 		self.endOfSong();
 	} else {
 	
