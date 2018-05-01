@@ -155,7 +155,7 @@ lcdDisplay.prototype._formatTrackInfo = function(data) {
 	
 	var txt = '';
 	if((data.status !== 'play' || data.status !== 'pause') || (!data.artist && !data.title)) {
-		txt = 'Volumio'
+		txt = 'Volumio';
 	} else {
 		if (data.artist) {
 			txt = data.artist;
@@ -166,7 +166,7 @@ lcdDisplay.prototype._formatTrackInfo = function(data) {
 	}
 	return txt;
 	
-}
+};
 
 // Formats the seek and duration into a text format suitable for display
 // seek (seek time in milliseconds)
@@ -180,7 +180,7 @@ lcdDisplay.prototype._formatSeekDuration = function(seek, duration) {
 	seekSec = seekSec - (seekMin * 60); // remaining seconds 
    
 	var durMin = Math.floor(duration / 60); // calculate whole duration minutes
-	var durSec = duration % 60 // remaining seconds
+	var durSec = duration % 60; // remaining seconds
 
 	// only two digits for minutes, so wrap back to 0 once we hit 100 
 	seekMin = seekMin % 100; 
