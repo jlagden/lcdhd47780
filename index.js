@@ -104,6 +104,8 @@ ControllerlcdHD47780.prototype.updateLcd = function(state) {
 	
 	self.logger.info('[lcdHD47780] Push State recieved:');
 	self.logger.info(state);
+	self.lcdDisplay.pushState(state);
+	self.logger.info('[lcdHD47780] Push State Completed');
 	
 };
 
