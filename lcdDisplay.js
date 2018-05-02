@@ -49,7 +49,11 @@ lcdDisplay.prototype.close = function() {
 	}
 	// Clear first before close so everything is tidy
 	self.lcd.clear(function(err) {
-		self.lcd.close();
+		if(err) {
+			self.logger.error('[lcdHD47780] LCD Error: ' + err);
+		else {
+			self.lcd.close();
+		}
 	});
   
 };
@@ -156,12 +160,10 @@ lcdDisplay.prototype._formatTrackInfo = function(data) {
 	if((data.status !== 'play' || data.status !== 'pause') || (!data.artist && !data.title)) {
 		txt = 'Volumio';
 	} else {
-		if (data.artist) {
+		if (data.artist)
 			txt = data.artist;
-		}
-		if(data.title) {
+		if(data.title) 
 			txt += txt ? ` - ${data.title}` : data.title;
-		}
 	}
 	return txt;
 	
