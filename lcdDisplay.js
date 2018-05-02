@@ -17,15 +17,14 @@ function lcdDisplay(context,config) {
 	// Some music sources don't specify a duration (eg. streaming music)
 	// If so, we don't display the duration
 	self.fixedTrackLength = false;
+	
 	self.elapsed = 0;
 
 	// Set up logger
-	
 	self.context = context;
 	self.logger = self.context.logger;
 	
 	// Get configuration parameters
-	
 	COLS = config.get('COLS');	ROWS = config.get('ROWS');
 	RS = config.get('RS');		E = config.get('E');
 	D4 = config.get('D4');		D5 = config.get('D5');
@@ -192,11 +191,10 @@ lcdDisplay.prototype._formatSeekDuration = function(seek, duration) {
 	if (durMin < 10)  (durMin = "0" + durMin);
   	if (durSec < 10)  (durSec = "0" + durSec);  
 	
-	var txt;
+	var txt = seekMin + ":" + seekSec;
 	if (self.fixedTrackLength)
- 		txt = seekMin + ":" + seekSec + " / " + durMin + ":" + durSec;
- 	else
-		txt = seekMin + ":" + seekSec;
+ 		txt+= " / " + durMin + ":" + durSec;
+
 	return txt; 
 
 };
