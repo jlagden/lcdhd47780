@@ -167,7 +167,7 @@ lcdDisplay.prototype._formatTrackInfo = function(data) {
 	return txt;
 	
 };
-
+	
 // Take in the track info, scroll position and width of the lcd and 
 // return the text to display
 	
@@ -216,7 +216,7 @@ lcdDisplay.prototype._formatSeekDuration = function(seek, duration) {
   	if (durSec < 10)  (durSec = "0" + durSec);  
 	
 	var txt = seekMin + ":" + seekSec;
-	if (self.fixedTrackLength)
+	if (duration)
  		txt+= " / " + durMin + ":" + durSec;
 
 	return txt; 
