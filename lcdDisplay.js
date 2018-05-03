@@ -51,6 +51,7 @@ lcdDisplay.prototype.close = function() {
 	self.lcd.clear(function(err) {
 		if(err) {
 			self.logger.error('[lcdHD47780] LCD Error: ' + err);
+		}
 		else {
 			self.lcd.close();
 		}
@@ -156,6 +157,7 @@ lcdDisplay.prototype._needStartDisplayInfo = function(state) {
 
 lcdDisplay.prototype._formatTrackInfo = function(data) {
 	
+	var txt;
 	if((data.status !== 'play' || data.status !== 'pause') || (!data.artist && !data.title)) {
 		txt = 'Volumio';
 	} else {
