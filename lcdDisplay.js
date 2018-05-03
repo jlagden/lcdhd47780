@@ -41,6 +41,11 @@ function lcdDisplay(context,config) {
   	});
 }				  
 
+lcdDisplay.prototype.clearTimer() {
+
+	
+}
+
 lcdDisplay.prototype.close = function() {
   
 	var self = this;
@@ -105,7 +110,7 @@ lcdDisplay.prototype.displayTrackInfo = function(data,pos) {
 		self.endOfSong();
 	} else {
 	
-		var trackInfo = data.artist + ' - ' + data.title;
+		var trackInfo = self._formatTrackInfo(data);
 
 		if (trackInfo.length > COLS) {
 			// Piece the string together in such a way so it constantly scrolling
