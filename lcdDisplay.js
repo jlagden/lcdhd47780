@@ -107,20 +107,14 @@ lcdDisplay.prototype.displayTrackInfo = function(data,pos) {
 	} else {
 	
 		var trackInfo = self._formatTrackInfo(data);
-
-		if (trackInfo.length > COLS) {
-			// Piece the string together in such a way so it constantly scrolling
-			trackInfo = trackInfo + '          ' + trackInfo.substr(0, COLS);
-		} else { // If the length is les then the display width, we just need to display it and forget about scrolling
-			// Add spaces to fill up the rest of the display
-			trackInfo = trackInfo + (' ').repeat(COLS-trackInfo.length);
-		}
 	
 		// Reset position
-		if (pos >= trackInfo.length - COLS) {
+		if (pos >= trackInfo.length) {
 	    		pos = 0;
 		}
 	
+		trackInfo = self._formatTextForScrolling(trackInfo,pos,COLS);
+		
 		self.lcd.setCursor(0,0);
 		// Print track info
 		self.lcd.print(trackInfo.substr(pos,COLS),function (err) {
@@ -166,6 +160,16 @@ lcdDisplay.prototype._formatTrackInfo = function(data) {
 		if(data.title) 
 			txt += txt ? ` - ${data.title}` : data.title;
 	}
+	
+	// If the text length is less than or equal to the lcd width then
+	// just pad with spaces and don't scroll
+	if(txt.length <= COLS) {
+		txt = txt + (' ').repeat(COLS - txt.length);
+	} else {
+		// Add some spaces so it doesn't look naff if it's scrolling
+		txt += (' ').repeat(lcdWidth/2);
+	}
+	
 	return txt;
 	
 };
@@ -176,18 +180,10 @@ lcdDisplay.prototype._formatTrackInfo = function(data) {
 lcdDisplay.prototype._formatTextForScrolling = function(trackInfo,pos,lcdWidth){	
 	
 	var txt;
-	// If the text length is less than or equal to the lcd width then
-	// just pad with spaces and don't scroll
-	if (trackInfo.length<=lcdWidth) {
-		txt = trackInfo + (' ').repeat(lcdWidth - trackInfo.length);
-	} else {
-		// Add some spaces so it doesn't look naff if it's scrolling
-		trackInfo += (' ').repeat(lcdWidth/2);
-		// Pos shouldn't be greater than the text length
-		if (pos>=trackInfo.length)
-			pos = 0;
-		txt = (trackInfo.substr(pos) + trackInfo.substr(0, pos)).substr(0,lcdWidth);
-	}
+	
+	if (pos>=trackInfo.length)
+		pos = 0;
+	txt = (trackInfo.substr(pos) + trackInfo.substr(0, pos)).substr(0,lcdWidth);
 	
 	return txt;
 	
