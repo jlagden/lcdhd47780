@@ -167,7 +167,7 @@ lcdDisplay.prototype._formatTrackInfo = function(data) {
 		txt = txt + (' ').repeat(COLS - txt.length);
 	} else {
 		// Add some spaces so it doesn't look naff if it's scrolling
-		txt += (' ').repeat(lcdWidth/2);
+		txt += (' ').repeat(COLS/2);
 	}
 	
 	return txt;
