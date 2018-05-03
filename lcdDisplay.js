@@ -41,11 +41,6 @@ function lcdDisplay(context,config) {
   	});
 }				  
 
-lcdDisplay.prototype.clearTimer() {
-
-	
-}
-
 lcdDisplay.prototype.close = function() {
   
 	var self = this;
@@ -161,7 +156,6 @@ lcdDisplay.prototype._needStartDisplayInfo = function(state) {
 
 lcdDisplay.prototype._formatTrackInfo = function(data) {
 	
-	var txt = '';
 	if((data.status !== 'play' || data.status !== 'pause') || (!data.artist && !data.title)) {
 		txt = 'Volumio';
 	} else {
@@ -170,6 +164,29 @@ lcdDisplay.prototype._formatTrackInfo = function(data) {
 		if(data.title) 
 			txt += txt ? ` - ${data.title}` : data.title;
 	}
+	return txt;
+	
+};
+
+// Take in the track info, scroll position and width of the lcd and 
+// return the text to display
+	
+lcdDisplay.prototype._formatTextForScrolling = function(trackInfo,pos,lcdWidth){	
+	
+	var txt;
+	// If the text length is less than or equal to the lcd width then
+	// just pad with spaces and don't scroll
+	if (trackInfo.length<=lcdWidth) {
+		txt = trackInfo + (' ').repeat(lcdWidth - trackInfo.length);
+	} else {
+		// Add some spaces so it doesn't look naff if it's scrolling
+		trackInfo += (' ').repeat(lcdWidth/2);
+		// Pos shouldn't be greater than the text length
+		if (pos>=trackInfo.length)
+			pos = 0;
+		txt = (trackInfo.substr(pos) + trackInfo.substr(0, pos)).substr(0,lcdWidth);
+	}
+	
 	return txt;
 	
 };
