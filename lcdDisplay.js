@@ -55,8 +55,6 @@ lcdDisplay.prototype.close = function() {
   
 };
 
-// TODO: check for endOfSong here?
-
 lcdDisplay.prototype.endOfSong = function() {
   
 	var self = this;
@@ -121,8 +119,8 @@ lcdDisplay.prototype.displayTrackInfo = function(data,pos) {
 		// Print track info
 		self.lcd.print(trackInfo,function (err) {
 			
-      	    // Track info printed ok, set lets print elapsed / duration
-		    self.lcd.setCursor(0,1);
+			// Track info printed ok, set lets print elapsed / duration
+			self.lcd.setCursor(0,1);
 		    self.lcd.print(self._formatSeekDuration(self.elapsed,duration),function (err) {
 			    self.displayTimer = setTimeout(function () {
 				    if (self.currentState.status != 'pause')
