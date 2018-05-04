@@ -152,7 +152,7 @@ lcdDisplay.prototype._needStartDisplayInfo = function(state) {
 lcdDisplay.prototype._formatTrackInfo = function(data) {
 	
 	var txt;
-	if((data.status !== 'play' || data.status !== 'pause') || (!data.artist && !data.title)) {
+	if((data.status !== 'play' && data.status !== 'pause') || (!data.artist && !data.title)) {
 		txt = 'Volumio';
 	} else {
 		if (data.artist)
