@@ -72,6 +72,7 @@ lcdDisplay.prototype.endOfSong = function() {
 lcdDisplay.prototype.pushState = function(state)  {
 	
 	var self = this;
+	self.logger.info('[lcdHD47780] Recieved pushstate');
 	self.elapsed = state.seek;
 	if (state.status === 'play') {		
 		if (self._needStartDisplayInfo(state)) { // Clear the timeout and start displayInfo again
@@ -94,6 +95,7 @@ lcdDisplay.prototype.pushState = function(state)  {
 		self.elapsed = state.seek; // Update elapsed
 	}
 	self.currentState = state; // Update state
+	self.logger.info('[lcdHD47780] Processed pushstate');
   
 };
 
