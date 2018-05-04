@@ -166,7 +166,7 @@ lcdDisplay.prototype._formatTrackInfo = function(data) {
 	// If the text length is less than or equal to the lcd width then
 	// just pad with spaces and don't scroll
 	if(txt.length <= COLS) {
-		txt = txt + (' ').repeat(COLS - txt.length);
+		txt += (' ').repeat(COLS - txt.length);
 	} else {
 		// Add some spaces so it doesn't look naff if it's scrolling
 		txt += (' ').repeat(COLS/2);
@@ -180,14 +180,8 @@ lcdDisplay.prototype._formatTrackInfo = function(data) {
 // return the text to display
 	
 lcdDisplay.prototype._formatTextForScrolling = function(trackInfo,pos,lcdWidth){	
-	
-	var txt;
-	
-	if (pos>=trackInfo.length)
-		pos = 0;
-	txt = (trackInfo.substr(pos) + trackInfo.substr(0, pos)).substr(0,lcdWidth);
-	
-	return txt;
+		
+	return ((trackInfo.substr(pos) + trackInfo.substr(0, pos)).substr(0,lcdWidth));
 	
 };
 
