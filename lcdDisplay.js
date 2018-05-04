@@ -119,7 +119,7 @@ lcdDisplay.prototype.displayTrackInfo = function(data,pos) {
 		
 		self.lcd.setCursor(0,0);
 		// Print track info
-		self.lcd.print(trackInfo.substr(pos,COLS),function (err) {
+		self.lcd.print(trackInfo,function (err) {
 			
       	    // Track info printed ok, set lets print elapsed / duration
 		    self.lcd.setCursor(0,1);
