@@ -76,8 +76,13 @@ lcdDisplay.prototype.pushState = function(state)  {
 	if (state.status === 'play') {		
 		if (self._needStartDisplayInfo(state)) { // Clear the timeout and start displayInfo again
 			clearTimeout(self.displayTimer);
-			self.lcd.clear();
-			self.displayTrackInfo(state, 0);
+			self.lcd.clear(function(err) {
+				if(err) {
+					self.logger.error('[lcdHD47780] LCD Error: ' + err);
+				} else {
+					self.displayTrackInfo(state, 0);
+				}
+			});	
 		}
 	}
 	else if (state.status === 'stop') { // Now stopped, clear the timeout and display
