@@ -114,7 +114,7 @@ lcdDisplay.prototype.displayTrackInfo = function(data,pos) {
 		}
 	
 		trackInfo = self._formatTextForScrolling(trackInfo,pos,COLS);
-		
+		self.logger.info('[lcdHD47780] Printing to LCD: ' + trackInfo);
 		self.lcd.setCursor(0,0);
 		// Print track info
 		self.lcd.print(trackInfo,function (err) {
