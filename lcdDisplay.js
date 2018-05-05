@@ -13,6 +13,7 @@ function lcdDisplay(context,config) {
 	
 	self.displayTimer = undefined;
 	self.currentState = undefined;
+	self.scrollPos = 0;
 	
 	self.elapsed = 0;
 
@@ -96,6 +97,34 @@ lcdDisplay.prototype.pushState = function(state)  {
 	self.logger.info('[lcdHD47780] Processed pushstate');
   
 };
+
+lcdDisplay.prototype.updateLCD = function() {
+	
+	var self = this;
+	var pos = self.scrollPos;
+	var duration = self.currentState.duration;
+	
+	var trackInfo = self._formatTrackInfo(self.currentState);
+	
+	if (pos >= trackInfo.length) {
+		pos = 0;
+	}
+	
+	trackInfo = self._formatTextForScrolling(trackInfo,pos,COLS);
+	
+	self.lcd.setCursor(0,0);
+	
+	// Print track info
+	self.lcd.print(trackInfo,function (err) {
+		// Track info printed ok, set lets print elapsed / duration
+		self.lcd.setCursor(0,1);
+		self.lcd.print(self._formatSeekDuration(self.elapsed,duration),function (err) {
+			if (self.currentState.status === 'play')
+	  	    	self.elapsed += SCROLL_SPEED;
+			self.scrollPos++;
+		});
+	});
+};	
 
 lcdDisplay.prototype.displayTrackInfo = function(data,pos) {
 	
