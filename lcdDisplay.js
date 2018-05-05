@@ -34,7 +34,7 @@ function lcdDisplay(context,config) {
 		self.logger.error('[lcdHD47780] LCD Error: ' + err);
 	});
 	self.lcd.on('ready',function() {
-		self.displayTimer = setInterval(updateLCD,SCROLL_SPEED);
+		self.displayTimer = setInterval(self.updateLCD,SCROLL_SPEED);
 		self.logger.info('[lcdHD47780] LCD Ready COLS={$COLS} ROWS={$ROWS} RS={$RS} E={$E} D4={$D4} D5={$D5} D6={$D6} D7={$D7}');
   	});
 }				  
@@ -62,23 +62,7 @@ lcdDisplay.prototype.pushState = function(state)  {
 	var self = this;
 	self.logger.info('[lcdHD47780] Recieved pushstate');
 	self.elapsed = state.seek;
-	if (state.status === 'play') {		
-		if (self._needStartDisplayInfo(state)) { // Clear the timeout and start displayInfo again
-			
-			self.lcd.clear(function(err) {
-				if(err) {
-					self.logger.error('[lcdHD47780] LCD Error: ' + err);
-				} else {
-					self.displayTrackInfo(state, 0);
-				}
-			});	
-		}
-	}
-	else if (state.status === 'stop') { // Now stopped, clear the timeout and display
-		self.elapsed = 0;
-		clearInterval(self.displayTimer);
-		self.lcd.clear();
-	}
+
 	self.currentState = state; // Update state
 	self.logger.info('[lcdHD47780] Processed pushstate');
   
