@@ -34,6 +34,7 @@ function lcdDisplay(context,config) {
 		self.logger.error('[lcdHD47780] LCD Error: ' + err);
 	});
 	self.lcd.on('ready',function() {
+		self.displayTimer = setInterval(updateLCD,SCROLL_SPEED);
 		self.logger.info('[lcdHD47780] LCD Ready COLS={$COLS} ROWS={$ROWS} RS={$RS} E={$E} D4={$D4} D5={$D5} D6={$D6} D7={$D7}');
   	});
 }				  
@@ -42,7 +43,7 @@ lcdDisplay.prototype.close = function() {
   
 	var self = this;
 	if (self.displayTimer !== undefined) {
-		clearTimeout(self.displayTimer);
+		clearInterval(self.displayTimer);
 	}
 	// Clear first before close so everything is tidy
 	self.lcd.clear(function(err) {
@@ -56,18 +57,6 @@ lcdDisplay.prototype.close = function() {
   
 };
 
-lcdDisplay.prototype.endOfSong = function() {
-  
-	var self = this;
-
-	if (self.displayTimer !== undefined) {
-		clearTimeout(self.displayTimer);
-		self.displayTimer = undefined;
-	}	
-	self.lcd.clear();
-  
-};
-
 lcdDisplay.prototype.pushState = function(state)  {
 	
 	var self = this;
@@ -75,7 +64,7 @@ lcdDisplay.prototype.pushState = function(state)  {
 	self.elapsed = state.seek;
 	if (state.status === 'play') {		
 		if (self._needStartDisplayInfo(state)) { // Clear the timeout and start displayInfo again
-			clearTimeout(self.displayTimer);
+			
 			self.lcd.clear(function(err) {
 				if(err) {
 					self.logger.error('[lcdHD47780] LCD Error: ' + err);
@@ -87,11 +76,8 @@ lcdDisplay.prototype.pushState = function(state)  {
 	}
 	else if (state.status === 'stop') { // Now stopped, clear the timeout and display
 		self.elapsed = 0;
-		clearTimeout(self.displayTimer);
+		clearInterval(self.displayTimer);
 		self.lcd.clear();
-	}
-	else if (state.status === 'pause') {
-		self.elapsed = state.seek; // Update elapsed
 	}
 	self.currentState = state; // Update state
 	self.logger.info('[lcdHD47780] Processed pushstate');
@@ -125,41 +111,6 @@ lcdDisplay.prototype.updateLCD = function() {
 		});
 	});
 };	
-
-lcdDisplay.prototype.displayTrackInfo = function(data,pos) {
-	
-  	var self = this; 
-	var duration = data.duration;
-	
-	if (duration && (self.elapsed >= duration * 1000)) {
-		self.endOfSong();
-	} else {
-	
-		var trackInfo = self._formatTrackInfo(data);
-	
-		// Reset position
-		if (pos >= trackInfo.length) {
-	    		pos = 0;
-		}
-	
-		trackInfo = self._formatTextForScrolling(trackInfo,pos,COLS);
-		self.logger.info('[lcdHD47780] Printing to LCD: ' + trackInfo);
-		self.lcd.setCursor(0,0);
-		// Print track info
-		self.lcd.print(trackInfo,function (err) {
-			
-			// Track info printed ok, set lets print elapsed / duration
-			self.lcd.setCursor(0,1);
-		    self.lcd.print(self._formatSeekDuration(self.elapsed,duration),function (err) {
-			    self.displayTimer = setTimeout(function () {
-				    if (self.currentState.status != 'pause')
-	  	    		    self.elapsed += SCROLL_SPEED;
-				    self.displayTrackInfo(data, pos + 1);
-			    },SCROLL_SPEED);
-		    });
-	    });
-    }
-};
 
 // If we have started playing or the artist/track has changed we need
 // to restart displayInfo		 
