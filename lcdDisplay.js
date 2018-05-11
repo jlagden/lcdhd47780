@@ -71,6 +71,7 @@ lcdDisplay.prototype.pushState = function(state)  {
 lcdDisplay.prototype.updateLCD = function() {
 	
 	var self = this;
+	self.logger.info('[lcdHD47780] Update LCD called');
 	var pos = self.scrollPos;
 	var duration = self.currentState.duration;
 	
