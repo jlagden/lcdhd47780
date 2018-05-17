@@ -29,15 +29,30 @@ function lcdDisplay(context,config) {
 
 	self.lcd = new Lcd({rs: RS, e: E, data: [D4, D5, D6, D7], cols: COLS, rows: ROWS});
 
+	 
+
 	// Handle any errors we forget about so they don't crash Node
 	self.lcd.on('error',function(err) {
 		self.logger.error('[lcdHD47780] LCD Error: ' + err);
 	});
 	self.lcd.on('ready',function() {
-		self.displayTimer = setInterval(self.updateLCD,SCROLL_SPEED);
+		if(self.displayTimer === undefined){
+			self.displayTimer = setInterval( self.intervalCheck.bind(self),SCROLL_SPEED);
+			self.logger.info('Set up display Timer');
+		}
+
 		self.logger.info('[lcdHD47780] LCD Ready COLS={$COLS} ROWS={$ROWS} RS={$RS} E={$E} D4={$D4} D5={$D5} D6={$D6} D7={$D7}');
   	});
 }				  
+
+lcdDisplay.prototype.intervalCheck = function() {
+
+	var self = this;
+
+	self.logger.info('[lcdhd47780] intervalCheck');
+	self.updateLCD();
+
+};
 
 lcdDisplay.prototype.close = function() {
   
@@ -71,30 +86,34 @@ lcdDisplay.prototype.pushState = function(state)  {
 lcdDisplay.prototype.updateLCD = function() {
 	
 	var self = this;
-	self.logger.info('[lcdHD47780] Update LCD called');
-	var pos = self.scrollPos;
-	var duration = self.currentState.duration;
+	self.logger.info('Updating LCD');
+
+	if(self.currentState!==undefined) {
+
+		var duration = self.currentState.duration;
 	
-	var trackInfo = self._formatTrackInfo(self.currentState);
+		var trackInfo = self._formatTrackInfo(self.currentState);
 	
-	if (pos >= trackInfo.length) {
-		pos = 0;
-	}
+		if (self.scrollPos >= trackInfo.length) {
+			self.scrollPos = 0;
+		}
 	
-	trackInfo = self._formatTextForScrolling(trackInfo,pos,COLS);
+		trackInfo = self._formatTextForScrolling(trackInfo,self.scrollPos,COLS);
+		self.logger.info('Trackinfo:' + trackInfo + 'POS:' + self.scrollPos);
+		self.lcd.setCursor(0,0);
 	
-	self.lcd.setCursor(0,0);
-	
-	// Print track info
-	self.lcd.print(trackInfo,function (err) {
-		// Track info printed ok, set lets print elapsed / duration
-		self.lcd.setCursor(0,1);
-		self.lcd.print(self._formatSeekDuration(self.elapsed,duration),function (err) {
-			if (self.currentState.status === 'play')
-	  	    	self.elapsed += SCROLL_SPEED;
-			self.scrollPos++;
+		// Print track info
+		self.lcd.print(trackInfo,function (err) {
+			// Track info printed ok, set lets print elapsed / duration
+			self.lcd.setCursor(0,1);
+			self.lcd.print(self._formatSeekDuration(self.elapsed,duration),function (err) {
+				if (self.currentState.status === 'play')
+	  	    		self.elapsed += SCROLL_SPEED;
+				self.scrollPos++;
+			});
 		});
-	});
+
+	}
 };	
 
 // If we have started playing or the artist/track has changed we need
