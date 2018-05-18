@@ -135,6 +135,7 @@ lcdDisplay.prototype._needStartDisplayInfo = function(state) {
 
 lcdDisplay.prototype._formatTrackInfo = function(data) {
 	
+	var self= this;
 	var txt;
 	if((data.status !== 'play' && data.status !== 'pause') || (!data.artist && !data.title)) {
 		txt = 'Volumio';
@@ -154,7 +155,7 @@ lcdDisplay.prototype._formatTrackInfo = function(data) {
 		txt += (' ').repeat(COLS/2);
 	}
 	
-	return txt;
+	return self._padEnd(txt,COLS);
 	
 };
 	
