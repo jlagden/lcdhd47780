@@ -203,3 +203,18 @@ lcdDisplay.prototype._formatSeekDuration = function(seek, duration) {
 	return txt; 
 
 };
+
+// Volumio runs on a version of Node that doesn't support padEnd, so just use our own 
+// implementation
+
+lcdDisplay.prototype._padEnd = function(string,length) {
+	
+	if(string.length>=length) {
+		return string;
+	}
+	else {
+		var numPad = length - string.length;
+		var txt = string + " ".repeat(numPad);
+		return txt;
+	}
+};
