@@ -29,8 +29,6 @@ function lcdDisplay(context,config) {
 
 	self.lcd = new Lcd({rs: RS, e: E, data: [D4, D5, D6, D7], cols: COLS, rows: ROWS});
 
-	 
-
 	// Handle any errors we forget about so they don't crash Node
 	self.lcd.on('error',function(err) {
 		self.logger.error('[lcdHD47780] LCD Error: ' + err);
@@ -41,7 +39,8 @@ function lcdDisplay(context,config) {
 			self.logger.info('Set up display Timer');
 		}
 
-		self.logger.info('[lcdHD47780] LCD Ready COLS={$COLS} ROWS={$ROWS} RS={$RS} E={$E} D4={$D4} D5={$D5} D6={$D6} D7={$D7}');
+		self.logger.info('[lcdHD47780] LCD Ready COLS=' + COLS + 'ROWS=' + ROWS + 'RS=' + RS + 'E=' + E +
+						 'D4=' + D4 + 'D5=' + D5 + 'D6=' + D6 + 'D7=' + D7);
   	});
 }				  
 
