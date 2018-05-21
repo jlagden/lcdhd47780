@@ -49,10 +49,13 @@ lcdDisplay.prototype.displaySplashScreen = function() {
 	
 	self.lcd.setCursor(0,0);
 
-	self.lcd.print('Volumio 2',function (err) {
+	self.lcd.clear(function (err) {
+	
+		self.lcd.print('Volumio 2',function (err) {
 			
-		self.lcd.setCursor(0,1);
-		self.lcd.print('Music Player',function (err) {		
+			self.lcd.setCursor(0,1);
+			self.lcd.print('Music Player',function (err) {		
+			});
 		});
 	});
 	
