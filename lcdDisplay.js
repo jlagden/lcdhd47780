@@ -105,30 +105,36 @@ lcdDisplay.prototype.pushState = function(state)  {
 lcdDisplay.prototype.updateLCD = function() {
 	
 	var self = this;
-	self.logger.info('Updating LCD');
+	self.logger.info('[lcdHD47780] Updating LCD');
 
 	if(self.currentState!==undefined) {
-
-		var duration = self.currentState.duration;
 	
+		// Track Information
+		
 		var trackInfo = self._formatTrackInfo(self.currentState);
-	
 		if (self.scrollPos >= trackInfo.length) {
 			self.scrollPos = 0;
 		}
-	
 		trackInfo = self._formatTextForScrolling(trackInfo,self.scrollPos,COLS);
-		self.logger.info('Trackinfo:' + trackInfo + 'POS:' + self.scrollPos);
+
+		// Source / Elapsed / Duration
+		
+		var duration = self.currentState.duration;
+		var elapsedInfo = self._formatSeekDuration(self.elapsed,duration);
+		
 		self.lcd.setCursor(0,0);
 	
 		// Print track info
 		self.lcd.print(trackInfo,function (err) {
+			
+			self.scrollPos++;
 			// Track info printed ok, set lets print elapsed / duration
 			self.lcd.setCursor(0,1);
-			self.lcd.print(self._formatSeekDuration(self.elapsed,duration),function (err) {
+			self.lcd.print(elapsedInfo,function (err) {
+				// Advanced elapsed if playing
 				if (self.currentState.status === 'play')
 	  	    		self.elapsed += SCROLL_SPEED;
-				self.scrollPos++;
+				
 			});
 		});
 
