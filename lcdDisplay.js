@@ -62,7 +62,6 @@ lcdDisplay.prototype.displaySplashScreen = function() {
 };
 
 lcdDisplay.prototype.intervalCheck = function() {
-
 	var self = this;
 
 	self.logger.info('[lcdhd47780] intervalCheck');
@@ -92,9 +91,9 @@ lcdDisplay.prototype.pushState = function(state)  {
 	
 	var self = this;
 	if(self.displayTimer === undefined){
-			self.displayTimer = setInterval( self.intervalCheck.bind(self),SCROLL_SPEED);
-			self.logger.info('Set up display Timer');
-		}
+		self.displayTimer = setInterval( self.intervalCheck.bind(self),SCROLL_SPEED);
+		self.logger.info('Set up display Timer');
+	}
 	self.logger.info('[lcdHD47780] Recieved pushstate');
 	self.elapsed = state.seek;
 
