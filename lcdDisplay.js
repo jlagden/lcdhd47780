@@ -155,7 +155,7 @@ lcdDisplay.prototype._formatTrackInfo = function(data) {
 		txt += (' ').repeat(COLS/2);
 	}
 	
-	return self._padEnd(txt,COLS);
+	return txt;	
 	
 };
 	
@@ -201,7 +201,7 @@ lcdDisplay.prototype._formatSeekDuration = function(seek, duration) {
 		
 	}
 
-	return txt; 
+	return self._padEnd(txt,COLS); 
 
 };
 
@@ -210,7 +210,7 @@ lcdDisplay.prototype._formatSeekDuration = function(seek, duration) {
 
 lcdDisplay.prototype._padEnd = function(string,length) {
 	
-	if(string.length>=length) {
+	if(string.length<=length) {
 		return string;
 	}
 	else {
