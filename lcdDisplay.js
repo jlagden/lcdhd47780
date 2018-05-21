@@ -33,16 +33,30 @@ function lcdDisplay(context,config) {
 	self.lcd.on('error',function(err) {
 		self.logger.error('[lcdHD47780] LCD Error: ' + err);
 	});
-	self.lcd.on('ready',function() {
-		if(self.displayTimer === undefined){
-			self.displayTimer = setInterval( self.intervalCheck.bind(self),SCROLL_SPEED);
-			self.logger.info('Set up display Timer');
-		}
+	self.lcd.on('ready',function() {	
 
+		self.displaySplashScreen();
 		self.logger.info('[lcdHD47780] LCD Ready COLS=' + COLS + 'ROWS=' + ROWS + 'RS=' + RS + 'E=' + E +
 						 'D4=' + D4 + 'D5=' + D5 + 'D6=' + D6 + 'D7=' + D7);
   	});
-}				  
+}			
+
+lcdDisplay.prototype.displaySplashScreen = function() {
+	
+	var self = this;
+	
+	self.logger.info('[lcdhd47780] Displaying splash screen');
+	
+	self.lcd.setCursor(0,0);
+
+	self.lcd.print('Volumio 2',function (err) {
+			
+		self.lcd.setCursor(0,1);
+		self.lcd.print('Music Player',function (err) {		
+		});
+	});
+	
+};
 
 lcdDisplay.prototype.intervalCheck = function() {
 
@@ -74,6 +88,10 @@ lcdDisplay.prototype.close = function() {
 lcdDisplay.prototype.pushState = function(state)  {
 	
 	var self = this;
+	if(self.displayTimer === undefined){
+			self.displayTimer = setInterval( self.intervalCheck.bind(self),SCROLL_SPEED);
+			self.logger.info('Set up display Timer');
+		}
 	self.logger.info('[lcdHD47780] Recieved pushstate');
 	self.elapsed = state.seek;
 
