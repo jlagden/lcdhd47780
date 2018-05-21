@@ -47,8 +47,6 @@ lcdDisplay.prototype.displaySplashScreen = function() {
 	
 	self.logger.info('[lcdhd47780] Displaying splash screen');
 	
-	self.lcd.setCursor(0,0);
-
 	self.lcd.clear(function (err) {
 	
 		self.lcd.print('Volumio 2',function (err) {
@@ -56,12 +54,14 @@ lcdDisplay.prototype.displaySplashScreen = function() {
 			self.lcd.setCursor(0,1);
 			self.lcd.print('Music Player',function (err) {		
 			});
+	
 		});
 	});
 	
 };
 
 lcdDisplay.prototype.intervalCheck = function() {
+	
 	var self = this;
 
 	self.logger.info('[lcdhd47780] intervalCheck');
