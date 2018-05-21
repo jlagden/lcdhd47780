@@ -229,12 +229,9 @@ lcdDisplay.prototype._formatSeekDuration = function(seek, duration) {
 
 lcdDisplay.prototype._padEnd = function(string,length) {
 	
-	if(string.length>=length) {
-		return string;
-	}
-	else {
-		var numPad = length - string.length;
-		var txt = string + " ".repeat(numPad);
-		return txt;
-	}
+	if(string.length>=length) 
+		return string;	
+	else 
+		return (string + " ".repeat(length - string.length));
+	
 };
