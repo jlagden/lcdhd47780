@@ -120,7 +120,7 @@ lcdDisplay.prototype.updateLCD = function() {
 		// Source / Elapsed / Duration
 		
 		var duration = self.currentState.duration;
-		var elapsedInfo = self._formatSeekDuration(self.elapsed,duration);
+		var elapsedInfo = (self.currentState.service==='webradio') ? self._padEnd('WebRadio',COLS) : self._formatSeekDuration(self.elapsed,duration);
 		
 		self.lcd.setCursor(0,0);
 	
