@@ -173,17 +173,15 @@ lcdDisplay.prototype._formatTrackInfo = function(data) {
 	
 	// If the text length is less than or equal to the lcd width then
 	// just pad with spaces and don't scroll
-	if(txt.length <= COLS) {
+	if(txt.length <= COLS) 
 		txt += (' ').repeat(COLS - txt.length);
-	} else {
-		// Add some spaces so it doesn't look naff if it's scrolling
-		txt += (' ').repeat(COLS/2);
-	}
+	else 
+		txt += (' ').repeat(COLS/2); // Add some spaces so it doesn't look naff if it's scrolling
 	
 	return txt;	
 	
 };
-	
+
 // Take in the track info, scroll position and width of the lcd and 
 // return the text to display
 	
@@ -200,7 +198,6 @@ lcdDisplay.prototype._formatTextForScrolling = function(trackInfo,pos,lcdWidth){
 lcdDisplay.prototype._formatSeekDuration = function(seek, duration) { 
 
 	var self = this;
-	var txt;
 	
 	var seekSec = Math.floor(seek / 1000); // convert seek to seconds
 	var seekMin = Math.floor(seekSec / 60); // calculate whole seek minutes
@@ -211,7 +208,7 @@ lcdDisplay.prototype._formatSeekDuration = function(seek, duration) {
 	if (seekMin < 10) (seekMin = "0" + seekMin); // pad minutes
 	if (seekSec < 10) (seekSec = "0" + seekSec); // pad seconds
 	 
-	txt = seekMin + ":" + seekSec;
+	var txt = seekMin + ":" + seekSec;
 	
 	if (duration) {
 		
@@ -231,8 +228,9 @@ lcdDisplay.prototype._formatSeekDuration = function(seek, duration) {
 
 };
 
-// Volumio runs on a version of Node that doesn't support padEnd, so just use our own 
-// implementation
+// Volumio runs on a version of Node that doesn't support padEnd, so just use our own implementation
+// string (string to pad)
+// length (string length to pad to)
 
 lcdDisplay.prototype._padEnd = function(string,length) {
 	
