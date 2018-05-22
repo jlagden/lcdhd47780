@@ -60,15 +60,6 @@ lcdDisplay.prototype.displaySplashScreen = function() {
 	
 };
 
-lcdDisplay.prototype.intervalCheck = function() {
-	
-	var self = this;
-
-	self.logger.info('[lcdhd47780] intervalCheck');
-	self.updateLCD();
-
-};
-
 lcdDisplay.prototype.close = function() {
   
 	var self = this;
@@ -89,10 +80,13 @@ lcdDisplay.prototype.close = function() {
 
 lcdDisplay.prototype.pushState = function(state)  {
 	
+	// TODO: Needs some redesign.
+	// If the state has just been pushed, we should update the LCD straight away
+	// rather than wait for the next interval
 	var self = this;
 	if(self.displayTimer === undefined){
-		self.displayTimer = setInterval( self.intervalCheck.bind(self),SCROLL_SPEED);
-		self.logger.info('Set up display Timer');
+		self.displayTimer = setInterval( self.updateLCD.bind(self),SCROLL_SPEED);
+		self.logger.info('[lcdHD47780] Set up display Timer');
 	}
 	self.logger.info('[lcdHD47780] Recieved pushstate');
 	self.elapsed = state.seek;
@@ -112,28 +106,34 @@ lcdDisplay.prototype.updateLCD = function() {
 		// Track Information
 		
 		var trackInfo = self._formatTrackInfo(self.currentState);
-		if (self.scrollPos >= trackInfo.length) {
-			self.scrollPos = 0;
-		}
+		
+		if (self.scrollPos >= trackInfo.length)
+			self.scrollPos = 0; // Reset scroll
+		
 		trackInfo = self._formatTextForScrolling(trackInfo,self.scrollPos,COLS);
 
 		// Source / Elapsed / Duration
 		
 		var duration = self.currentState.duration;
-		var elapsedInfo = (self.currentState.service==='webradio') ? self._padEnd('WebRadio',COLS) : self._formatSeekDuration(self.elapsed,duration);
+
+		// If it's a WebRadio then don't show elapsed/duration 
+		var elapsedInfo = (self.currentState.service==='webradio') ? 
+								self._padEnd('WebRadio',COLS) : 
+								self._formatSeekDuration(self.elapsed,duration);
 		
 		self.lcd.setCursor(0,0);
 	
 		// Print track info
 		self.lcd.print(trackInfo,function (err) {
 			
-			self.scrollPos++;
+			self.scrollPos++; // Advance scroll position
+
 			// Track info printed ok, set lets print elapsed / duration
 			self.lcd.setCursor(0,1);
 			self.lcd.print(elapsedInfo,function (err) {
-				// Advanced elapsed if playing
-				if (self.currentState.status === 'play')
-	  	    		self.elapsed += SCROLL_SPEED;
+				
+				if (self.currentState.status === 'play') 
+	  	    		self.elapsed += SCROLL_SPEED; // Advanced elapsed if playing
 				
 			});
 		});
@@ -141,34 +141,23 @@ lcdDisplay.prototype.updateLCD = function() {
 	}
 };	
 
-// If we have started playing or the artist/track has changed we need
-// to restart displayInfo		 
-		       
-lcdDisplay.prototype._needStartDisplayInfo = function(state) {
-
-	var self = this;
-  	return  ((state.status === 'play' && self.currentState.status === 'stop') ||
-    	self.currentState.artist !== state.artist || 
-  		self.currentState.title !== state.title);
-  
-};
-
-// In some cases (eg. radio station) only the artist or the title is actually populated
+// In some cases (webradio) only the artist or the title is actually populated
 // so we need to check what is populated
 // Also if we don't have that info or we aren't playing / paused then just display
 // a placeholder
+// data (current state)
 
 lcdDisplay.prototype._formatTrackInfo = function(data) {
 	
-	var self= this;
+	var self = this;
 	var txt;
-	if((data.status !== 'play' && data.status !== 'pause') || (!data.artist && !data.title)) {
-		txt = 'Volumio';
+	if(!data.artist && !data.title) { // TODO: Check this, would we want to display uri in this case?
+		txt = 'No track data';
 	} else {
 		if (data.artist)
 			txt = data.artist;
 		if(data.title) 
-			txt += txt ? ` - ${data.title}` : data.title;
+			txt += txt ? (' - ' + data.title) : data.title;
 	}
 	
 	// If the text length is less than or equal to the lcd width then
@@ -184,6 +173,9 @@ lcdDisplay.prototype._formatTrackInfo = function(data) {
 
 // Take in the track info, scroll position and width of the lcd and 
 // return the text to display
+// trackInfo (Track name / artist)
+// pos (current scroll position)
+// lcdWidth (character width of lcd)
 	
 lcdDisplay.prototype._formatTextForScrolling = function(trackInfo,pos,lcdWidth){	
 		
