@@ -199,6 +199,7 @@ lcdDisplay.prototype._formatTextForScrolling = function(trackInfo,pos,lcdWidth){
 
 lcdDisplay.prototype._formatSeekDuration = function(seek, duration) { 
 
+	var self = this;
 	var txt;
 	
 	var seekSec = Math.floor(seek / 1000); // convert seek to seconds
