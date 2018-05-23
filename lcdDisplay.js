@@ -150,7 +150,7 @@ lcdDisplay.prototype.updateLCD = function() {
 lcdDisplay.prototype._formatTrackInfo = function(data) {
 	
 	var self = this;
-	var txt;
+	var txt = "";
 	if(!data.artist && !data.title) { // TODO: Check this, would we want to display uri in this case?
 		txt = 'No track data';
 	} else {
