@@ -83,6 +83,9 @@ lcdDisplay.prototype.pushState = function(state)  {
 	// TODO: Needs some redesign.
 	// If the state has just been pushed, we should update the LCD straight away
 	// rather than wait for the next interval
+	
+	// Also we should be resetting the scrollPos if the track/title has changed
+	
 	var self = this;
 	if(self.displayTimer === undefined){
 		self.displayTimer = setInterval( self.updateLCD.bind(self),SCROLL_SPEED);
