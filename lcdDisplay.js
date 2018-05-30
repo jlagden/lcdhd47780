@@ -181,8 +181,11 @@ lcdDisplay.prototype._formatTrackInfo = function(data) {
 // lcdWidth (character width of lcd)
 	
 lcdDisplay.prototype._formatTextForScrolling = function(trackInfo,pos,lcdWidth){	
-		
-	return ((trackInfo.substr(pos) + trackInfo.substr(0, pos)).substr(0,lcdWidth));
+	
+	if (trackInfo.length==lcdWidth)
+		return trackInfo;
+	else
+		return ((trackInfo.substr(pos) + trackInfo.substr(0, pos)).substr(0,lcdWidth));
 	
 };
 
