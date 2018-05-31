@@ -87,6 +87,13 @@ lcdDisplay.prototype.pushState = function(state)  {
 	// Also we should be resetting the scrollPos if the track/title has changed
 	
 	var self = this;
+	
+	if(self.currentState){
+		if(self._formatTrackInfo(self.currentState)!==self._formatTrackInfo(state)){
+			self.scrollPos = 0
+		}
+	}
+	
 	if(self.displayTimer === undefined){
 		self.displayTimer = setInterval( self.updateLCD.bind(self),SCROLL_SPEED);
 		self.logger.info('[lcdHD47780] Set up display Timer');
