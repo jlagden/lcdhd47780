@@ -14,7 +14,6 @@ function lcdDisplay(context,config) {
 	self.displayTimer = undefined;
 	self.currentState = undefined;
 	self.scrollPos = 0;
-	
 	self.elapsed = 0;
 
 	// Set up logger
@@ -35,34 +34,15 @@ function lcdDisplay(context,config) {
 	});
 	self.lcd.on('ready',function() {	
 
-		self.displaySplashScreen();
 		self.logger.info('[lcdHD47780] LCD Ready COLS=' + COLS + 'ROWS=' + ROWS + 'RS=' + RS + 'E=' + E +
 						 'D4=' + D4 + 'D5=' + D5 + 'D6=' + D6 + 'D7=' + D7);
   	});
 }			
 
-lcdDisplay.prototype.displaySplashScreen = function() {
-	
-	var self = this;
-	
-	self.logger.info('[lcdhd47780] Displaying splash screen');
-	
-	self.lcd.clear(function (err) {
-	
-		self.lcd.print('Volumio 2',function (err) {
-			
-			self.lcd.setCursor(0,1);
-			self.lcd.print('Music Player',function (err) {		
-			});
-	
-		});
-	});
-	
-};
-
 lcdDisplay.prototype.close = function() {
   
 	var self = this;
+	// Stop Timer
 	if (self.displayTimer !== undefined) {
 		clearInterval(self.displayTimer);
 	}
