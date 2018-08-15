@@ -151,12 +151,14 @@ lcdDisplay.prototype.updateLCD = function() {
 	}
 };	
 
-// In some cases (webradio) only the artist or the title is actually populated
-// so we need to check what is populated
-// Also if we don't have that info or we aren't playing / paused then just display
-// a placeholder
-// data (current state)
-
+/**
+ * In some cases (webradio) only the artist or the title is actually populated
+ * so we need to check what is populated
+ * Also if we don't have that info or we aren't playing / paused then just display
+ * a placeholder
+ * @param {Object} data - Current state
+ * @private
+ */
 lcdDisplay.prototype._formatTrackInfo = function(data) {
 	
 	var self = this;
@@ -181,12 +183,13 @@ lcdDisplay.prototype._formatTrackInfo = function(data) {
 	
 };
 
-// Take in the track info, scroll position and width of the lcd and 
-// return the text to display
-// trackInfo (Track name / artist)
-// pos (current scroll position)
-// lcdWidth (character width of lcd)
-	
+/**
+ * Take in the track info, scroll position and width of the lcd and return the text to display
+ * @param {String} trackInfo - Track name / artist
+ * @param {Integer} pos - Current scroll position
+ * @param {Integer} lcdWidth - Character width of lcd
+ * @private
+ */
 lcdDisplay.prototype._formatTextForScrolling = function(trackInfo,pos,lcdWidth){	
 	
 	if (trackInfo.length==lcdWidth)
@@ -196,10 +199,12 @@ lcdDisplay.prototype._formatTextForScrolling = function(trackInfo,pos,lcdWidth){
 	
 };
 
-// Formats the seek and duration into a text format suitable for display
-// seek (seek time in milliseconds)
-// duration (duration time in seconds)
-
+/**
+ * Formats the seek and duration into a text format suitable for display
+ * @param {Integer} seek - Seek time in milliseconds
+ * @param {Integer} duration - Duration time in seconds
+ * @private
+ */
 lcdDisplay.prototype._formatSeekDuration = function(seek, duration) { 
 
 	var self = this;
@@ -233,10 +238,12 @@ lcdDisplay.prototype._formatSeekDuration = function(seek, duration) {
 
 };
 
-// Volumio runs on a version of Node that doesn't support padEnd, so just use our own implementation
-// string (string to pad)
-// length (string length to pad to)
-
+/**
+ * Volumio runs on a version of Node that doesn't support padEnd, so just use our own implementation
+ * @param {string} string - String to pad
+ * @param {Integer} length - String length to pad to
+ * @private
+ */
 lcdDisplay.prototype._padEnd = function(string,length) {
 	
 	if(string.length>=length) 
