@@ -5,7 +5,7 @@ Volumio plugin for driving an HD47780 LCD Display
 ## Description
 
 - Makes use of the [Node.js Hitachi HD44780 LCD driver](https://github.com/fivdi/lcd)
-- Displays artist / track and track duration / elaspsed
+- Displays artist / track and track duration / elapsed
 - Displays WebRadio details
 - GPIO pin configuration
 
