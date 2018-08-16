@@ -67,6 +67,7 @@ ControllerlcdHD47780.prototype.onStop = function() {
 	try {
 		
 		self.lcdDisplay.close();
+		// TODO: Close socket
 		self.logger.info("[lcdHD47780] Plugin stopped");	
 		
 		// Once the Plugin has successfull stopped resolve the promise
@@ -90,7 +91,9 @@ ControllerlcdHD47780.prototype.onRestart = function() {
 	try {
 		self.logger.info('[lcdHD47780] Plugin restarting...');
 		self.lcdDisplay.close();
+		// TODO: Close socket
 		self.lcdDisplay = new lcdDisplay(self.context,self.config);
+		// TODO: Setup new socket
 		self.logger.info('[lcdHD47780] Plugin started');
 	} catch(err) {
 		self.logger.error('[lcdHD47780] Restart failed: ' + err);
