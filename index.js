@@ -10,7 +10,7 @@ var lcdDisplay = require('./lcdDisplay');
 
 module.exports = ControllerlcdHD47780;
 
-function ControllerlcdHD47780(context) {
+function Controllerlcdhd47780(context) {
 
 	// This fixed variable will let us refer to 'this' object at deeper scopes
  	var self = this;
@@ -23,7 +23,7 @@ function ControllerlcdHD47780(context) {
 
 }
 
-ControllerlcdHD47780.prototype.onVolumioStart = function() {
+Controllerlcdhd47780.prototype.onVolumioStart = function() {
 
 	var self = this;	
 	var configFile=this.commandRouter.pluginManager.getConfigurationFile(this.context,'config.json');
@@ -34,7 +34,7 @@ ControllerlcdHD47780.prototype.onVolumioStart = function() {
 	
 };
 
-ControllerlcdHD47780.prototype.onStart = function() {
+Controllerlcdhd47780.prototype.onStart = function() {
 	
 	var self = this;
 	var defer = libQ.defer();
@@ -59,7 +59,7 @@ ControllerlcdHD47780.prototype.onStart = function() {
 	
 };
 
-ControllerlcdHD47780.prototype.onStop = function() {
+Controllerlcdhd47780.prototype.onStop = function() {
 
 	var self = this;
 	var defer = libQ.defer();
@@ -84,7 +84,7 @@ ControllerlcdHD47780.prototype.onStop = function() {
 	
 };
 
-ControllerlcdHD47780.prototype.onRestart = function() {
+Controllerlcdhd47780.prototype.onRestart = function() {
 
 	var self = this;
 	
@@ -101,7 +101,7 @@ ControllerlcdHD47780.prototype.onRestart = function() {
 
 };
 
-ControllerlcdHD47780.prototype.updateLcd = function(state) {
+Controllerlcdhd47780.prototype.updateLcd = function(state) {
 	
 	var self = this;
 	
@@ -119,7 +119,7 @@ Controllerlcdhd47780.prototype.getConfigurationFiles = function()
 	return ['config.json'];
 }
 
-ControllerlcdHD47780.prototype.getUIConfig = function() {
+Controllerlcdhd47780.prototype.getUIConfig = function() {
 
 	var defer = libQ.defer();
 	var self = this;
@@ -151,28 +151,28 @@ ControllerlcdHD47780.prototype.getUIConfig = function() {
 
 };
 
-ControllerlcdHD47780.prototype.setUIConfig = function(data) {
+Controllerlcdhd47780.prototype.setUIConfig = function(data) {
 
 	var self = this;
 	//Perform your installation tasks here
 
 };
 
-ControllerlcdHD47780.prototype.getConf = function(varName) {
+Controllerlcdhd47780.prototype.getConf = function(varName) {
 
 	var self = this;
 	//Perform your installation tasks here
 
 };
 
-ControllerlcdHD47780.prototype.setConf = function(varName, varValue) {
+Controllerlcdhd47780.prototype.setConf = function(varName, varValue) {
 
 	var self = this;
 	//Perform your installation tasks here
 
 };
 
-ControllerlcdHD47780.prototype.saveGPIOConfig = function(data) {
+Controllerlcdhd47780.prototype.saveGPIOConfig = function(data) {
 	
 	var self = this;
 	
