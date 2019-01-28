@@ -33,21 +33,18 @@ function lcdDisplay(context,config) {
 		self.logger.error('[lcdHD47780] LCD Error: ' + err);
 	});
 	self.lcd.on('ready',function() {	
-
-		self.logger.info('[lcdHD47780] LCD Ready COLS=' + COLS + 'ROWS=' + ROWS + 'RS=' + RS + 'E=' + E +
-						 'D4=' + D4 + 'D5=' + D5 + 'D6=' + D6 + 'D7=' + D7);
+		self.logger.info(`[lcdhd47780] LCD Ready COLS=${COLS} ROWS=${ROWS} RS=${RS} E=${E} D4=${D4} D5=${D5} D6=${D6} D7=${D7}`);
   	});
 }			
 
 lcdDisplay.prototype.close = function() {
   
 	var self = this;
-	// Stop Timer
+	
 	if (self.displayTimer !== undefined) {
-		clearInterval(self.displayTimer);
+		clearInterval(self.displayTimer); // Stop Timer
 	}
-	// Clear first before close so everything is tidy
-	self.lcd.clear(function(err) {
+	self.lcd.clear(function(err) { // Clear first before close so everything is tidy
 		if(err) {
 			self.logger.error('[lcdHD47780] LCD Error: ' + err);
 		}
