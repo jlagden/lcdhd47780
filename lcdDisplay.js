@@ -65,6 +65,8 @@ lcdDisplay.prototype.pushState = function(state)  {
 	
 	var self = this;
 	
+	self.logger.info('[lcdHD47780] Recieved pushstate');
+	
 	if(self.currentState){
 		if(self._formatTrackInfo(self.currentState)!==self._formatTrackInfo(state)){
 			self.scrollPos = 0
@@ -75,10 +77,10 @@ lcdDisplay.prototype.pushState = function(state)  {
 		self.displayTimer = setInterval( self.updateLCD.bind(self),SCROLL_SPEED);
 		self.logger.info('[lcdHD47780] Set up display Timer');
 	}
-	self.logger.info('[lcdHD47780] Recieved pushstate');
+	
 	self.elapsed = state.seek;
-
 	self.currentState = state; // Update state
+	
 	self.logger.info('[lcdHD47780] Processed pushstate');
   
 };
@@ -86,7 +88,6 @@ lcdDisplay.prototype.pushState = function(state)  {
 lcdDisplay.prototype.updateLCD = function() {
 	
 	var self = this;
-	self.logger.info('[lcdHD47780] Updating LCD');
 
 	if(self.currentState!==undefined) {
 	
