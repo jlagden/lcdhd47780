@@ -28,8 +28,7 @@ function lcdDisplay(context,config) {
 
 	self.lcd = new Lcd({rs: RS, e: E, data: [D4, D5, D6, D7], cols: COLS, rows: ROWS});
 
-	// Handle any errors we forget about so they don't crash Node
-	self.lcd.on('error',function(err) {
+	self.lcd.on('error',function(err) { // Handle any errors we forget about so they don't crash Node
 		self.logger.error('[lcdHD47780] LCD Error: ' + err);
 	});
 	self.lcd.on('ready',function() {	
@@ -69,7 +68,7 @@ lcdDisplay.prototype.pushState = function(state)  {
 	
 	if(self.currentState){
 		if(self._formatTrackInfo(self.currentState)!==self._formatTrackInfo(state)){
-			self.scrollPos = 0
+			self.scrollPos = 0;
 		}
 	}
 	
@@ -156,7 +155,6 @@ lcdDisplay.prototype._formatTrackInfo = function(data) {
 		txt += (' ').repeat(COLS - txt.length);
 	else 
 		txt += (' ').repeat(COLS/2); // Add some spaces so it doesn't look naff if it's scrolling
-	
 	return txt;	
 	
 };
